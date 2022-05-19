@@ -1,20 +1,8 @@
-# ~/.zshenv
+# ~/.zshenv – For environment variables (should run as fast as possible)
 
-export ARCHFLAGS="-arch $(uname -m)"
-export MAKEFLAGS="-j$(/usr/sbin/sysctl -n hw.ncpu)"
+#echo 'Running ~/.zshenv'
 
-export JAVA_VERSION='11' # Filter from `java_home --help`
-export JAVA_ARCH="$(uname -m)" # Filter from `java_home --help`
-
-export JAVA_HOME="$(/usr/libexec/java_home --version $JAVA_VERSION)"
-export SDKMAN_DIR="$HOME/.sdkman"
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export NVM_DIR="$HOME/.nvm"
-export RVM_DIR="$HOME/.rvm" # Custom
-export FIG_DIR="$HOME/.fig" # Custom
-
-export EDITOR='nvim'
-
+# Functions ————————————————————————————————————————————————————————————————————————————————————————
 safe_source () {
     test -f "$1" && source "$1"
 }
@@ -24,3 +12,40 @@ prepend_path () {
 append_path () {
     test -d "$1" && PATH="$PATH:$1"
 }
+
+# Variables ————————————————————————————————————————————————————————————————————————————————————————
+# Compiler flags
+export ARCHFLAGS="-arch $(uname -m)"
+export MAKEFLAGS="-j$(/usr/sbin/sysctl -n hw.ncpu)"
+
+# Java
+export JAVA_VERSION='11' # Filter from `java_home --help`
+export JAVA_ARCH="$(uname -m)" # Filter from `java_home --help`
+export JAVA_HOME="$(/usr/libexec/java_home --version $JAVA_VERSION)"
+
+# Homes
+export SDKMAN_DIR="$HOME/.sdkman"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export NVM_DIR="$HOME/.nvm"
+export RVM_DIR="$HOME/.rvm" # Custom
+export FIG_DIR="$HOME/.fig" # Custom
+
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)" # Originally in .zprofile
+
+# Applications
+export EDITOR='nvim'
+
+# PATH —————————————————————————————————————————————————————————————————————————————————————————————
+# GNU
+append_path "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
+append_path "$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin"
+append_path "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin"
+
+# Android
+append_path "$ANDROID_HOME/tools"
+append_path "$ANDROID_HOME/platform-tools"
+
+# rvm
+append_path "$RVM_DIR/bin"
+

@@ -1,7 +1,29 @@
-# Fig pre block. Keep at the top of this file.
-#. "$HOME/.fig/shell/zprofile.pre.zsh"
+# ~/.zprofile – For login shells (ran before .zshrc)
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+safe_source "$FIG_DIR/shell/zprofile.pre.zsh" # Fig (Pre)
 
-# Fig post block. Keep at the bottom of this file.
-#. "$HOME/.fig/shell/zprofile.post.zsh"
+# Scripts ——————————————————————————————————————————————————————————————————————————————————————————
+# SDKMAN!
+safe_source "$SDKMAN_DIR/bin/sdkman-init.sh"
+
+# nvm
+safe_source "$NVM_DIR/nvm.sh"
+
+# rvm
+safe_source "$RVM_DIR/scripts/rvm"
+
+# Anaconda
+__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+
+safe_source "$FIG_DIR/shell/zprofile.post.zsh" # Fig (Post)
