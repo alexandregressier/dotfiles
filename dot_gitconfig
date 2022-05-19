@@ -1,0 +1,14 @@
+[user]
+    name = Alexandre Gressier
+    email = alexandre@gressier.dev
+    signingkey = 99290D13C3CFFA3C
+[init]
+    defaultBranch = main
+[core]
+    editor = vim
+    autocrlf = input
+	excludesFile = ~/.gitignore
+[gpg]
+    program = gpg
+[commit]
+    gpgsign = true
