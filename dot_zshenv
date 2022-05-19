@@ -42,10 +42,12 @@ append_path "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
 append_path "$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin"
 append_path "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin"
 
+# rustup
+safe_source "$HOME/.cargo/env"
+
 # Android
 append_path "$ANDROID_HOME/tools"
 append_path "$ANDROID_HOME/platform-tools"
 
 # rvm
 append_path "$RVM_DIR/bin"
-
