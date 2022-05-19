@@ -29,7 +29,7 @@ update-node:
 
     local -r local_node_version=$(nvm version)
     local -r local_node_lts=$(nvm ls --no-colors | ggrep -oP "^lts/\K([a-z]+)(?=\ ->\ $local_node_version.*$)")
-    echo "⬇️  Fetching the latest Node.js $local_node_lts version…"
+    echo "$(tput bold)⬇️  Fetching the latest Node.js $local_node_lts version…$(tput sgr0)"
     local -r remote_node_version=$(nvm version-remote lts/$local_node_lts)
     if [ "$local_node_version" != "$remote_node_version" ]; then
         echo "$(tput setaf 4)❗️ A new version of Node.js $local_node_lts was found!$(tput sgr0)"
@@ -45,7 +45,9 @@ update-npm:
     safe_source "$NVM_DIR/nvm.sh"
     set -euo pipefail
 
+    echo "$(tput bold)nvm install-latest-npm$(tput sgr0)"
     nvm install-latest-npm
+    echo "$(tput bold)npm -g update$(tput sgr0)"
     npm -g update
 
 update-gems:
@@ -56,6 +58,10 @@ update-pip:
 
 update-tealdeer:
     tldr --update
+
+
+show-path:
+    echo $PATH | tr ':' '\n'
 
 
 encrypt:
