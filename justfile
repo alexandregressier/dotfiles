@@ -2,6 +2,9 @@
 
 alias up := update
 
+default:
+  @just --choose
+
 update: update-macos update-brew update-sdkman update-node update-npm update-gems update-pip update-tealdeer
 
 update-macos:
@@ -40,7 +43,6 @@ update-node:
 update-npm:
     #!/usr/bin/env zsh
     safe_source "$NVM_DIR/nvm.sh"
-    set -euo pipefail
 
     nvm install-latest-npm
     npm -g update
@@ -53,3 +55,12 @@ update-pip:
 
 update-tealdeer:
     tldr --update
+
+
+encrypt:
+    @echo "$(tput bold)🔏 Paste the message to encrypt (Return Ctrl+D when done):$(tput sgr0)"
+    gpg -esar alexandre@gressier.dev
+
+decrypt:
+    @echo "$(tput bold)🔓 Paste the message to decrypt (Return Ctrl+D when done):$(tput sgr0)"
+    gpg -d
