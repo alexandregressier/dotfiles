@@ -1,7 +1,5 @@
 # ~/.zshenv – For environment variables (should run as fast as possible)
 
-#echo 'Running ~/.zshenv'
-
 # Functions ————————————————————————————————————————————————————————————————————————————————————————
 safe_source () {
     test -f "$1" && source "$1"
