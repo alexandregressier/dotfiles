@@ -43,6 +43,7 @@ update-node:
 update-npm:
     #!/usr/bin/env zsh
     safe_source "$NVM_DIR/nvm.sh"
+    set -euo pipefail
 
     nvm install-latest-npm
     npm -g update
