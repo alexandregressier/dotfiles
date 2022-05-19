@@ -1,0 +1,264 @@
+let mapleader = " "
+
+source ~/.vimplug
+
+""" Plugin Settings -----------------------------
+let g:argtextobj_pairs="(:),{:},[:],<:>"
+
+let g:highlightedyank_highlight_duration = "200"
+
+""" Settings -----------------------------
+set showmode
+set relativenumber
+set number
+set scrolloff=8
+set clipboard+=unnamed
+set ttimeout
+
+set nomagic
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+set ideastatusicon="gray"
+set ideajoin
+
+""" Mappings ------------------------------------
+map <Leader><Leader> <Action>(GotoAction)
+
+" Quit
+nmap <Leader>qq <Action>(Exit)
+nmap <Leader>qr <Action>(InvalidateCaches)
+
+" IdeaVIM
+map <Leader>fvd :e ~/.ideavimrc<cr>
+map <Leader>zt <Action>(VimFindActionIdAction)
+
+" NERDTree
+map <Leader><Esc> :NERDTree<cr>
+map <Leader><S-Esc> :NERDTreeFind<cr>
+
+" Projects
+map <Leader>pr <Action>(ManageRecentProjects)
+map <Leader>po <Action>(OpenFile)
+map <Leader>pn <Action>(NewProject)
+map <Leader>px <Action>(CloseProject)
+map <Leader>pl <Action>(OpenProjectWindows)
+map <Leader>pj <Action>(NextProjectWindow)
+map <Leader>pk <Action>(PreviousProjectWindow)
+
+" Files
+sethandler <M-f> a:vim
+map <M-f> <Action>(RecentFiles)
+imap <M-f> <Action>(RecentFiles)
+map <Leader>ff <Action>(GotoFile)
+map <Leader>fs <Action>(GotoSymbol)
+map <Leader>fc <Action>(GotoClass)
+
+" Buffers
+map <Leader><Tab> <C-S-6>
+map <Leader>s <Action>(Switcher)
+map <Leader>x <Action>(CloseContent)
+map <Leader><S-x> <Action>(ReopenClosedTab)
+sethandler <M-S-j> a:vim
+map <M-S-j> <Action>(PreviousTab)
+sethandler <M-S-k> a:vim
+map <M-S-k> <Action>(NextTab)
+
+" Window
+map <Leader>ww <C-w><C-w>
+map <Leader>wh <C-w>h
+map <Leader>wj <C-w>j
+map <Leader>wk <C-w>k
+map <Leader>wl <C-w>l
+map <Leader>w/ <C-w>v<C-w>h:q<cr>
+map <Leader>w- <C-w>s<C-w>k:q<cr>
+map <Leader>w? <C-w>v<C-w>h
+map <Leader>w_ <C-w>s<C-w>k
+map <Leader>wx <Action>(CloseAllEditors)
+
+" Words
+onoremap w iw
+xnoremap w iw
+
+onoremap W aW
+xnoremap W aW
+
+onoremap " i"
+xnoremap " i"
+
+onoremap ) i)
+xnoremap ) i)
+onoremap ( a)
+xnoremap ( a)
+
+onoremap ] i]
+xnoremap ] i]
+onoremap [ a]
+xnoremap [ a]
+
+" Move
+sethandler <M-j> a:vim
+nnoremap <M-j> <C-d>
+inoremap <M-j> <C-d>
+sethandler <M-k> a:vim
+nnoremap <M-k> <C-u>
+inoremap <M-k> <C-u>
+
+sethandler <A-S-j> n:vim
+nmap <A-S-j> <Action>(MoveStatementDown)
+xmap <A-S-j> <Action>(MoveStatementDown)
+sethandler <A-S-k> n:vim
+nmap <A-S-k> <Action>(MoveStatementUp)
+xmap <A-S-k> <Action>(MoveStatementUp)
+
+sethandler <C-i> n:vim
+nnoremap <C-i> :action JumpToLastChange<cr>
+sethandler <C-o> n:vim
+
+" Insert
+nmap <M-i> <Action>(InsertLiveTemplate)
+imap <M-i> <Action>(InsertLiveTemplate)
+
+" Edit
+nnoremap C cc
+nnoremap cc C
+nnoremap cC c^
+
+sethandler <C-a> n:vim
+sethandler <C-x> n:vim
+
+xnoremap < <gv
+xnoremap > >gv
+
+" Undo
+nnoremap U <C-R>
+
+" Copy/Cut/Paste
+nnoremap yy y$
+nnoremap yY y^
+
+nnoremap D dd
+nnoremap dd d$
+nnoremap dD d^
+
+map <A-p> <Action>(PasteMultiple)
+imap <A-p> <Action>(PasteMultiple)
+
+" Find & Replace
+xmap / y/<C-r>0
+xmap ? y/<C-r>0
+sethandler <M-l> a:vim
+nnoremap <M-l> :nohls<cr>
+sethandler <M-r> a:ide
+map <Leader>/ <Action>(FindInPath)
+map <Leader><M-r> <Action>(ReplaceInPath)
+
+" Formatting
+nmap == <Action>(ReformatCode)
+
+" Selection
+nmap vai vaI
+
+" Refactoring
+map <Leader>cw <Action>(RenameElement)
+nmap <Leader>8 <Plug>AllWholeOccurrences
+xmap <Leader>8 <Plug>AllWholeOccurrences
+
+map <Leader>rr <Action>(Refactorings.QuickListPopupAction)
+map <Leader>rm <Action>(Move)
+map <Leader>rw <Action>(SurroundWith)
+map <Leader>rd <Action>(Unwrap)
+
+map <Leader>rf <Action>(ChangeSignature)
+map <Leader>rv <Action>(IntroduceVariable)
+map <Leader>rn <Action>(Inline)
+map <Leader>rV <Action>(IntroduceProperty)
+map <Leader>rp <Action>(IntroduceParameter)
+
+map <Leader>rf <Action>(ExtractFunction)
+map <Leader>ri <Action>(ExtractInterface)
+
+"map <Leader>rj <Action>(MemberPushDown)
+"map <Leader>rk <Action>(MembersPullUp)
+
+" Errors
+map <Leader>el <Action>(CodeInspection.OnEditor)
+map <Leader>ej <Action>(GotoNextError)
+map <Leader>ek <Action>(GotoPreviousError)
+map <Leader>ed <Action>(ShowErrorDescription)
+map <Leader>ei <Action>(RunInspection)
+
+" Git
+map <Leader><A-Esc> <Action>(Vcs.Show.Local.Changes)
+map <Leader>gg <Action>()
+map <Leader>gi <Action>(Git.Init)
+map <Leader>gb <Action>(Git.Branches)
+map <Leader>gl <Action>(Vcs.Show.Log)
+map <Leader>gh <Action>(Vcs.ShowTabbedFileHistory)
+map <Leader>gH <Action>(LocalHistory.ShowHistory)
+map <Leader>gp <Action>(Vcs.Push)
+map <Leader>gP <Action>(Vcs.Pull)
+map <Leader>gf <Action>(Git.Fetch)
+
+" Applications
+map <Leader>` <Action>(com.sonnk.iterm.OpenCmd)
+
+" Actions
+"map <M-C-bs> <Action>(RunConfigurationAsAction_Run_orb-apps [clean]_default_target)
+"imap <M-C-bs> <Action>(RunConfigurationAsAction_Run_orb-apps [clean]_default_target)
+"map <M-C-cr> <Action>(RunConfigurationAsAction_Run_orb-apps [assembleDebug]_default_target)
+"imap <M-C-cr> <Action>(RunConfigurationAsAction_Run_orb-apps [assembleDebug]_default_target)
+"map <M-C-A-cr> <Action>(RunConfigurationAsAction_Run_orb-android-app_device_and_snapshot_combo_box_target[])
+"imap <M-C-A-cr> <Action>(RunConfigurationAsAction_Run_orb-android-app_device_and_snapshot_combo_box_target[])
+map <M-C-d> <Action>(Stop)
+imap <M-C-d> <Action>(Stop)
+
+" Gradle
+map <Leader>bb <Action>(Gradle.ExecuteTask)
+"map <Leader>br <Action>(ExternalSystem.ProjectRefreshAction)
+map <Leader>br <Action>(Android.SyncProject)
+
+" AceJump
+sethandler <M-j> n:vim
+map <M-j> <Action>(AceAction)
+imap <M-j> <Action>(AceAction)
+"map <M-S-j> <Action>(AceTargetAction)
+map <Leader><M-j> <Action>(FileStructurePopup)
+
+" Multiple Cursors
+sethandler <M-A-j> a:vim
+map <M-A-j> <Action>(EditorCloneCaretBelow)
+imap <M-A-j> <Action>(EditorCloneCaretBelow)
+sethandler <M-A-k> a:vim
+map <M-A-k> <Action>(EditorCloneCaretAbove)
+imap <M-A-k> <Action>(EditorCloneCaretAbove)
+
+sethandler <C-n> a:vim
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+
+sethandler <C-S-n> a:vim
+nmap <C-S-n> <Plug>PrevOccurrence
+xmap <C-S-n> <Plug>PrevOccurrence
+
+sethandler <C-A-n> a:vim
+nmap <C-A-n> <Plug>SkipOccurrence
+xmap <C-A-n> <Plug>SkipOccurrence
+
+nmap <C-p> <Plug>RemoveOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+
+sethandler <C-g> v:vim
+xmap <C-g> <Action>($SearchWeb)
+
+" DataSpell
+sethandler <M-o> a:vim
+nnoremap <M-o> :action NotebookInsertCellBelowAction<CR>i#<Space>
+sethandler <M-S-o> a:vim
+nnoremap <M-S-o> :action NotebookInsertCellAboveAction<CR>i
+sethandler <M-d> a:vim
+nnoremap <M-d> :action NotebookDeleteCellAction<CR>
