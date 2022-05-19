@@ -5,7 +5,7 @@ alias up := update
 default:
   @just --choose
 
-update: update-macos update-brew update-sdkman update-node update-npm update-gems update-pip update-tealdeer
+update: update-macos update-brew update-sdkman update-rust update-node update-npm update-gems update-pip update-tealdeer
 
 update-macos:
     softwareupdate --install --all --force
@@ -21,6 +21,9 @@ update-sdkman:
     sdk update
     echo "$(tput bold)sdk upgrade$(tput sgr0)"
     sdk upgrade
+
+update-rust:
+    rustup update
 
 update-node:
     #!/usr/bin/env zsh
