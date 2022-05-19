@@ -63,6 +63,9 @@ update-tealdeer:
     tldr --update
 
 
+show-installed-packages:
+    brew deps --installed --tree
+
 show-path:
     echo $PATH | tr ':' '\n'
 
