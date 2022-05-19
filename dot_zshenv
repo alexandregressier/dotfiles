@@ -1,0 +1,26 @@
+# ~/.zshenv
+
+export ARCHFLAGS="-arch $(uname -m)"
+export MAKEFLAGS="-j$(/usr/sbin/sysctl -n hw.ncpu)"
+
+export JAVA_VERSION='11' # Filter from `java_home --help`
+export JAVA_ARCH="$(uname -m)" # Filter from `java_home --help`
+
+export JAVA_HOME="$(/usr/libexec/java_home --version $JAVA_VERSION)"
+export SDKMAN_DIR="$HOME/.sdkman"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export NVM_DIR="$HOME/.nvm"
+export RVM_DIR="$HOME/.rvm" # Custom
+export FIG_DIR="$HOME/.fig" # Custom
+
+export EDITOR='nvim'
+
+safe_source () {
+    test -f "$1" && source "$1"
+}
+prepend_path () {
+    test -d "$1" && PATH="$1:$PATH"
+}
+append_path () {
+    test -d "$1" && PATH="$PATH:$1"
+}
