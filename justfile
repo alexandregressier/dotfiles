@@ -5,10 +5,7 @@ alias up := update
 default:
   @just --choose
 
-update: update-macos update-brew update-sdkman update-rust update-node update-npm update-gems update-pip update-tealdeer
-
-update-macos:
-    softwareupdate --install --all --force
+update: update-brew update-sdkman update-rust update-node update-npm update-gems update-pip update-tealdeer update-xcode update-macos
 
 update-brew:
     brew update
@@ -61,6 +58,22 @@ update-pip:
 
 update-tealdeer:
     tldr --update
+
+update-xcode:
+    #!/usr/bin/env zsh
+    set -eo pipefail
+
+    local -r local_xcode_version=$(xed --version | grep -oE '[^ ]+$')
+    echo "$(tput bold)⬇️  Fetching the latest Xcode version…$(tput sgr0)"
+    local -r remote_xcode_version=$(xcodes list | tail -1 | grep -oE '^[^ ]+')
+    if [ "$local_xcode_version" != "$remote_xcode_version" ]; then
+        echo "$(tput setaf 4)❗️ A new version of Xcode was found! ($local_xcode_version -> $remote_xcode_version)$(tput sgr0)"
+    else
+        echo "$(tput setaf 2)✅ Xcode is up-to-date ($local_xcode_version)$(tput sgr0)"
+    fi
+
+update-macos:
+    softwareupdate --install --all --force
 
 
 show-installed-packages:
