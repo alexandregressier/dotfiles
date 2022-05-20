@@ -31,7 +31,7 @@ setopt HIST_BEEP              # Beep when accessing nonexistent history
 setopt extendedglob
 
 # https://unix.stackexchange.com/a/197841
-set -o emacs
+setopt emacs
 
 # https://stackoverflow.com/a/29403520
 bindkey '^x^_' redo
