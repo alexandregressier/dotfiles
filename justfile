@@ -5,7 +5,7 @@ alias up := update
 default:
   @just --choose
 
-update: update-brew update-sdkman update-rust update-node update-npm update-gems update-pip update-tealdeer update-xcode update-macos
+update: update-brew update-sdkman update-rust update-node update-npm update-gems update-pip update-zinit update-tealdeer update-xcode update-macos
 
 update-brew:
     brew update
@@ -13,7 +13,7 @@ update-brew:
 
 update-sdkman:
     #!/usr/bin/env zsh
-    safe_source "$SDKMAN_DIR/bin/sdkman-init.sh"
+    source "$SDKMAN_DIR/bin/sdkman-init.sh"
     echo "$(tput bold)sdk update$(tput sgr0)"
     sdk update
     echo "$(tput bold)sdk upgrade$(tput sgr0)"
@@ -24,7 +24,7 @@ update-rust:
 
 update-node:
     #!/usr/bin/env zsh
-    safe_source "$NVM_DIR/nvm.sh"
+    source "$NVM_DIR/nvm.sh"
     set -eo pipefail
 
     local -r local_node_version=$(nvm version)
@@ -42,7 +42,7 @@ update-node:
 
 update-npm:
     #!/usr/bin/env zsh
-    safe_source "$NVM_DIR/nvm.sh"
+    source "$NVM_DIR/nvm.sh"
     set -euo pipefail
 
     echo "$(tput bold)nvm install-latest-npm$(tput sgr0)"
@@ -55,6 +55,16 @@ update-gems:
 
 update-pip:
     pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+
+update-zinit:
+    #!/usr/bin/env zsh
+    source "$ZINIT_HOME/zinit/zinit.git/zinit.zsh"
+    set -eo pipefail
+
+    echo "$(tput bold)zinit self-update$(tput sgr0)"
+    zinit self-update
+    echo "$(tput bold)zinit update --parallel$(tput sgr0)"
+    zinit update --parallel
 
 update-tealdeer:
     tldr --update

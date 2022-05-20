@@ -22,6 +22,7 @@ export JAVA_ARCH="$(uname -m)" # Filter from `java_home --help`
 export JAVA_HOME="$(/usr/libexec/java_home --version $JAVA_VERSION)"
 
 # Homes
+export ZINIT_HOME="$HOME/.local/share"
 export SDKMAN_DIR="$HOME/.sdkman"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export NVM_DIR="$HOME/.nvm"
