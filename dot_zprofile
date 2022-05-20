@@ -1,11 +1,11 @@
 # ~/.zprofile – For login shells (ran before .zshrc)
 
+safe_source "$FIG_DIR/shell/zprofile.pre.zsh" # Fig (Pre)
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-safe_source "$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
-
-safe_source "$FIG_DIR/shell/zprofile.pre.zsh" # Fig (Pre)
+safe_source "$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh" # Fig won't load otherwise
 
 # Scripts ——————————————————————————————————————————————————————————————————————————————————————————
 ### Zinit
