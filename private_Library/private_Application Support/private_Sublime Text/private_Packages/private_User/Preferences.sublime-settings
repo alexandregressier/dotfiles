@@ -15,9 +15,9 @@
 	"highlight_modified_tabs": true,
 
 	// Editing
-	"find_selected_text": true,
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": "all",
+	"find_selected_text": true,
 
 	// Packages
 	"ignored_packages": [],
