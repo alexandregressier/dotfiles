@@ -7,6 +7,9 @@ safe_source "$FIG_DIR/shell/zshrc.pre.zsh" # Fig (Pre)
 HISTSIZE=1000000000
 SAVEHIST=$HISTSIZE
 
+# https://unix.stackexchange.com/a/197841
+set -o emacs
+
 # https://stackoverflow.com/a/29403520
 bindkey '^x^_' redo
 

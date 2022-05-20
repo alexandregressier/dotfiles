@@ -32,7 +32,7 @@ export FIG_DIR="$HOME/.fig" # Custom
 eval "$(/opt/homebrew/bin/brew shellenv)" # Originally in .zprofile
 
 # Applications
-export EDITOR='nvim'
+export EDITOR='nvim' # https://unix.stackexchange.com/a/197841
 
 # PATH —————————————————————————————————————————————————————————————————————————————————————————————
 # GNU
