@@ -1,15 +1,9 @@
-
 # ~/.zshrc – For interactive shells (i.e., a terminal with a prompt)
 
 safe_source "$FIG_DIR/shell/zshrc.pre.zsh" # Fig (Pre)
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-safe_source "$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
-
 # Zsh ——————————————————————————————————————————————————————————————————————————————————————————————
-# History
+# History – https://unix.stackexchange.com/a/273863
 HISTSIZE=1000000000
 SAVEHIST=$HISTSIZE
 setopt BANG_HIST              # Treat the '!' character specially during expansion
@@ -26,7 +20,7 @@ setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks before recording entry
 setopt HIST_VERIFY            # Don't execute immediately upon history expansion
 setopt HIST_BEEP              # Beep when accessing nonexistent history
 
-# Enable ^*
+# Enable ^* – https://unix.stackexchange.com/a/32472
 setopt extendedglob
 
 # https://unix.stackexchange.com/a/197841
