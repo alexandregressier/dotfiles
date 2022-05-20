@@ -33,16 +33,16 @@ alias gp='git push'
 
 # chezmoi
 alias c='chezmoi'
-alias ccd="cd $HOME/.local/share/chezmoi"
+alias ccd="cd $CHEZMOI_ROOT"
 alias ce='chezmoi edit'
 alias cs='chezmoi status'
 alias ca='chezmoi add'
 alias cr='chezmoi remove'
 alias cdd='chezmoi diff'
-alias ct="exa --tree $HOME/.local/share/chezmoi"
-alias cshow="cd $HOME/.local/share/chezmoi && git show && cd -"
-alias cl="cd $HOME/.local/share/chezmoi && git log && cd -"
-alias cpush="cd $HOME/.local/share/chezmoi && git push && cd -"
+alias ct="exa --tree $CHEZMOI_ROOT"
+alias cl="git -C $CHEZMOI_ROOT log"
+alias cshow="git -C $CHEZMOI_ROOT show"
+alias cpush="git -C $CHEZMOI_ROOT push"
 
 # Zsh ——————————————————————————————————————————————————————————————————————————————————————————————
 # History – https://unix.stackexchange.com/a/273863
