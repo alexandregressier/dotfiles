@@ -13,21 +13,17 @@ append_path () {
 }
 
 # Variables ————————————————————————————————————————————————————————————————————————————————————————
-# Compiler flags
-export ARCHFLAGS="-arch $(uname -m)"
-export MAKEFLAGS="-j$(/usr/sbin/sysctl -n hw.ncpu)"
-
 # Java
 export JAVA_VERSION='11' # Filter from `java_home --help`
 export JAVA_ARCH="$(uname -m)" # Filter from `java_home --help`
-export JAVA_HOME="$(/usr/libexec/java_home --version $JAVA_VERSION)"
 
 # Homes
-export ZINIT_HOME="$HOME/.local/share"
+export JAVA_HOME="$(/usr/libexec/java_home --version $JAVA_VERSION)"
 export SDKMAN_DIR="$HOME/.sdkman"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export NVM_DIR="$HOME/.nvm"
 export RVM_DIR="$HOME/.rvm" # Custom
+export ZINIT_HOME="$HOME/.local/share"
 export FIG_DIR="$HOME/.fig" # Custom
 
 # Homebrew
@@ -47,7 +43,7 @@ append_path "$ANDROID_HOME/tools"
 append_path "$ANDROID_HOME/platform-tools"
 
 # rustup
-safe_source "$HOME/.cargo/env"
+safe_source "$HOME/.cargo/env" # Only updates the PATH
 
 # rvm
 append_path "$RVM_DIR/bin"

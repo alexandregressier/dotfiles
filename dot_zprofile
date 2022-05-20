@@ -5,43 +5,10 @@
 
 safe_source "$FIG_DIR/shell/zprofile.pre.zsh" # Fig (Pre)
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-safe_source "$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh" # Fig won't load otherwise
-
-# Scripts ——————————————————————————————————————————————————————————————————————————————————————————
-### Zinit
-if [[ ! -f $ZINIT_HOME/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$ZINIT_HOME/zinit" && command chmod g-rwX "$ZINIT_HOME/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$ZINIT_HOME/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
-fi
-source "$ZINIT_HOME/zinit/zinit.git/zinit.zsh"
-
-# SDKMAN!
-safe_source "$SDKMAN_DIR/bin/sdkman-init.sh"
-
-# nvm
-safe_source "$NVM_DIR/nvm.sh"
-
-# rvm
-safe_source "$RVM_DIR/scripts/rvm"
-
-# Anaconda
-__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# Variables ————————————————————————————————————————————————————————————————————————————————————————
+# Compiler flags
+export ARCHFLAGS="-arch $(uname -m)"
+export MAKEFLAGS="-j$(/usr/sbin/sysctl -n hw.ncpu)"
 
 
 safe_source "$FIG_DIR/shell/zprofile.post.zsh" # Fig (Post)

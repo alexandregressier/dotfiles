@@ -4,6 +4,11 @@
 
 safe_source "$FIG_DIR/shell/zshrc.pre.zsh" # Fig (Pre)
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+safe_source "$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh" # Fig won't load otherwise
+
 # Zsh ——————————————————————————————————————————————————————————————————————————————————————————————
 # History – https://unix.stackexchange.com/a/273863
 HISTSIZE=1000000000
@@ -42,6 +47,17 @@ select-word-style bash
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
+
+# Scripts ——————————————————————————————————————————————————————————————————————————————————————————
+# Zinit
+if [[ ! -f $ZINIT_HOME/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$ZINIT_HOME/zinit" && command chmod g-rwX "$ZINIT_HOME/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$ZINIT_HOME/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+source "$ZINIT_HOME/zinit/zinit.git/zinit.zsh"
 
 # Zinit ————————————————————————————————————————————————————————————————————————————————————————————
 autoload -Uz _zinit
@@ -109,6 +125,28 @@ alias cl="cd $HOME/.local/share/chezmoi && git log && cd -"
 alias cpush="cd $HOME/.local/share/chezmoi && git push && cd -"
 
 # Scripts ——————————————————————————————————————————————————————————————————————————————————————————
+# SDKMAN!
+safe_source "$SDKMAN_DIR/bin/sdkman-init.sh"
+
+# nvm
+safe_source "$NVM_DIR/nvm.sh"
+
+# rvm
+safe_source "$RVM_DIR/scripts/rvm"
+
+# Anaconda
+__conda_setup="$("$HOMEBREW_PREFIX/anaconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$HOMEBREW_PREFIX/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOMEBREW_PREFIX/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOMEBREW_PREFIX/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
 # Powerlevel10k
 safe_source "$HOME/.p10k.zsh" # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
 
