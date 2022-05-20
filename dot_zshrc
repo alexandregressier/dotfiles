@@ -6,9 +6,7 @@ safe_source "$FIG_DIR/shell/zshrc.pre.zsh" # Fig (Pre)
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+safe_source "$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # Zsh ——————————————————————————————————————————————————————————————————————————————————————————————
 # History
@@ -100,8 +98,7 @@ alias cpush="cd $HOME/.local/share/chezmoi && git push && cd -"
 
 # Scripts ——————————————————————————————————————————————————————————————————————————————————————————
 # Powerlevel10k
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+safe_source "$HOME/.p10k.zsh" # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
 
 # zoxide
 eval "$(zoxide init zsh --cmd cd)"
