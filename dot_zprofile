@@ -1,6 +1,11 @@
-# ~/.zprofile – For login shells (ran before .zshrc)
+# ~/.zprofile – For environment variables unrelated to the PATH
+# (Sourced only once at login time, it’s best to put things that are loaded only once and can be
+# inherited by subshells (e.g., environment variables, which are "exported"))
+# (ranger S runs an interactive non-login shell)
 
 safe_source "$FIG_DIR/shell/zprofile.pre.zsh" # Fig (Pre)
+
+export YO='jfsalfkjsdja'
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]

@@ -1,4 +1,5 @@
-# ~/.zshenv – For environment variables (should run as fast as possible)
+# ~/.zshenv – For environment variables related to the PATH
+# Always sourced, should run as fast as possible
 
 # Functions ————————————————————————————————————————————————————————————————————————————————————————
 safe_source () {
