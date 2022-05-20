@@ -1,6 +1,14 @@
+
 # ~/.zshrc – For interactive shells (i.e., a terminal with a prompt)
 
 safe_source "$FIG_DIR/shell/zshrc.pre.zsh" # Fig (Pre)
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # Zsh ——————————————————————————————————————————————————————————————————————————————————————————————
 # History
@@ -36,6 +44,10 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
+
+# Powerlevel10k
+zinit ice depth=1 # git clone depth
+zinit light romkatv/powerlevel10k
 
 # Functions ————————————————————————————————————————————————————————————————————————————————————————
 jdk () {
@@ -87,8 +99,9 @@ alias cl="cd $HOME/.local/share/chezmoi && git log && cd -"
 alias cpush="cd $HOME/.local/share/chezmoi && git push && cd -"
 
 # Scripts ——————————————————————————————————————————————————————————————————————————————————————————
-# Anaconda
-conda activate userland
+# Powerlevel10k
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # zoxide
 eval "$(zoxide init zsh --cmd cd)"
@@ -98,6 +111,11 @@ safe_source "$HOME/.fzf.zsh" # Loads auto-completion & keybindings
 
 # iTerm2
 safe_source "$HOME/.iterm2_shell_integration.zsh"
+
+
+# Misc —————————————————————————————————————————————————————————————————————————————————————————————
+# Anaconda
+conda activate userland
 
 
 safe_source "$FIG_DIR/shell/zshrc.post.zsh" # Fig (Post)
