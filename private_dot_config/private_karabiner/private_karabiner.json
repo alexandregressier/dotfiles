@@ -29,13 +29,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "0",
-                                        "modifiers": [
-                                            "command",
-                                            "option",
-                                            "shift",
-                                            "control"
-                                        ]
+                                        "key_code": "mission_control"
                                     }
                                 ],
                                 "type": "basic"
