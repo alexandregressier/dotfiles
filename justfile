@@ -5,7 +5,7 @@ alias up := update
 default:
   @just --choose
 
-update: update-brew update-sdkman update-rust update-node update-npm update-gems update-pip update-zinit update-tealdeer update-xcode update-macos
+update: update-brew update-sdkman update-rust update-node update-npm update-gems update-pip update-zinit update-spacevim update-tealdeer update-xcode update-macos
 
 update-brew:
     brew update
@@ -65,6 +65,9 @@ update-zinit:
     zinit self-update
     echo "$(tput bold)zinit update --parallel$(tput sgr0)"
     zinit update --parallel
+
+update-spacevim:
+    git -C ~/.SpaceVim/ pull
 
 update-tealdeer:
     tldr --update
