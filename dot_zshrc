@@ -84,6 +84,10 @@ zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
 # Scripts ——————————————————————————————————————————————————————————————————————————————————————————
+# SSH agent
+unset SSH_AGENT_PID
+[ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ] && export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+
 # SDKMAN!
 safe_source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
