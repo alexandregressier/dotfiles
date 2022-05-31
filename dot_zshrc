@@ -141,8 +141,9 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
-# Powerlevel10k
 zinit ice depth=1 # git clone depth
+
+# Powerlevel10k
 zinit light romkatv/powerlevel10k
 
 # Environments —————————————————————————————————————————————————————————————————————————————————————
