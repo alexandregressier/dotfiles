@@ -20,6 +20,8 @@ alias e="$EDITOR"
 alias d='docker'
 alias b='./gradlew'
 alias py='python'
+alias lg='lazygit'
+alias ld='lazydocker'
 
 # Git
 alias g='git'
@@ -149,6 +151,8 @@ zinit ice depth=1 # git clone depth
 
 # Powerlevel10k
 zinit light romkatv/powerlevel10k
+
+zinit light gradle/gradle-completion
 
 # Environments —————————————————————————————————————————————————————————————————————————————————————
 jdk () {
