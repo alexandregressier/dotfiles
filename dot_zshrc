@@ -15,6 +15,7 @@ alias ll='exa --long --header'
 alias la='exa --long --header --all'
 alias lt='exa --tree'
 alias cat='bat'
+alias rm='trash'
 
 alias e="$EDITOR"
 alias d='docker'
@@ -147,12 +148,18 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
-zinit ice depth=1 # git clone depth
-
 # Powerlevel10k
+zinit ice depth=1 # git clone depth
 zinit light romkatv/powerlevel10k
 
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma/fast-syntax-highlighting
+
+zinit light hlissner/zsh-autopair
+
 zinit light gradle/gradle-completion
+
+zinit snippet OMZ::plugins/dirhistory/dirhistory.plugin.zsh
 
 # Environments —————————————————————————————————————————————————————————————————————————————————————
 jdk () {
