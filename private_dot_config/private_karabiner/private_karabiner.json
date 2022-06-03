@@ -276,6 +276,27 @@
                         ]
                     },
                     {
+                        "description": "left_option + spacebar -> play_or_pause",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "consumer_key_code": "play_or_pause"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "spacebar -> left_shift || spacebar",
                         "manipulators": [
                             {
