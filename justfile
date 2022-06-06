@@ -103,3 +103,7 @@ encrypt:
 decrypt:
     @echo "$(tput bold)🔓 Paste the message to decrypt (Return Ctrl+D when done):$(tput sgr0)"
     gpg -d
+
+brew-clean:
+    brew autoremove
+    brew cleanup
