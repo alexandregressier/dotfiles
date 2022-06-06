@@ -104,6 +104,14 @@ decrypt:
     @echo "$(tput bold)🔓 Paste the message to decrypt (Return Ctrl+D when done):$(tput sgr0)"
     gpg -d
 
+
 brew-clean:
     brew autoremove
     brew cleanup
+
+
+install-packages-npm:
+    npm install -g aws-cdk @aws-amplify/cli
+
+install-pkg-pip:
+    pip install awscli aws-sam-cli
