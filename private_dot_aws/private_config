@@ -1,8 +1,8 @@
 [default]
-region = eu-west-3
+region=eu-west-3
 
 [profile cdk]
-region = eu-west-3
+region=eu-west-3
 
 [profile amplify]
-region = eu-west-3
+region=eu-west-3
