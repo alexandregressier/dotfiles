@@ -20,5 +20,6 @@
 	"find_selected_text": true,
 
 	// Packages
-	"ignored_packages": [],
+	"ignored_packages": [
+	],
 }
