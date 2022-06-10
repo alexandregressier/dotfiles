@@ -111,7 +111,7 @@ brew-clean:
 
 
 install-packages-npm:
-    npm install -g aws-cdk @aws-amplify/cli
+    npm install -g npm-check-updates aws-cdk @aws-amplify/cli
 
 install-pkg-pip:
     pip install awscli aws-sam-cli
