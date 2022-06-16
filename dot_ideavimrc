@@ -40,7 +40,7 @@ map <Leader><Esc> :NERDTree<cr>
 map <Leader><S-Esc> :NERDTreeFind<cr>
 
 " Projects
-map <Leader>pr <Action>(ManageRecentProjects)
+map <Leader>pp <Action>(ManageRecentProjects)
 map <Leader>po <Action>(OpenFile)
 map <Leader>pn <Action>(NewProject)
 map <Leader>px <Action>(CloseProject)
@@ -49,9 +49,9 @@ map <Leader>pj <Action>(NextProjectWindow)
 map <Leader>pk <Action>(PreviousProjectWindow)
 
 " Files
-sethandler <M-f> a:vim
-map <M-f> <Action>(RecentFiles)
-imap <M-f> <Action>(RecentFiles)
+sethandler <M-j> a:vim
+map <M-j> <Action>(RecentFiles)
+imap <M-j> <Action>(RecentFiles)
 map <Leader>ff <Action>(GotoFile)
 map <Leader>fs <Action>(GotoSymbol)
 map <Leader>fc <Action>(GotoClass)
@@ -82,8 +82,8 @@ map <Leader>wx <Action>(CloseAllEditors)
 onoremap w iw
 xnoremap w iw
 
-onoremap W aW
-xnoremap W aW
+onoremap W iW
+xnoremap W iW
 
 onoremap " i"
 xnoremap " i"
@@ -97,14 +97,6 @@ onoremap ] i]
 xnoremap ] i]
 onoremap [ a]
 xnoremap [ a]
-
-" Move
-sethandler <M-j> a:vim
-nnoremap <M-j> <C-d>
-inoremap <M-j> <C-d>
-sethandler <M-k> a:vim
-nnoremap <M-k> <C-u>
-inoremap <M-k> <C-u>
 
 sethandler <A-S-j> n:vim
 nmap <A-S-j> <Action>(MoveStatementDown)
@@ -191,8 +183,7 @@ map <Leader>ed <Action>(ShowErrorDescription)
 map <Leader>ei <Action>(RunInspection)
 
 " Git
-map <Leader><A-Esc> <Action>(Vcs.Show.Local.Changes)
-map <Leader>gg <Action>()
+map <Leader>gg <Action>(Vcs.Show.Local.Changes)
 map <Leader>gi <Action>(Git.Init)
 map <Leader>gb <Action>(Git.Branches)
 map <Leader>gl <Action>(Vcs.Show.Log)
@@ -221,11 +212,11 @@ map <Leader>bb <Action>(Gradle.ExecuteTask)
 map <Leader>br <Action>(Android.SyncProject)
 
 " AceJump
-sethandler <M-j> n:vim
-map <M-j> <Action>(AceAction)
-imap <M-j> <Action>(AceAction)
-"map <M-S-j> <Action>(AceTargetAction)
-map <Leader><M-j> <Action>(FileStructurePopup)
+sethandler <M-e> n:vim
+map <M-e> <Action>(AceAction)
+imap <M-e> <Action>(AceAction)
+"map <M-S-e> <Action>(AceTargetAction)
+map <Leader><M-e> <Action>(FileStructurePopup)
 
 " Multiple Cursors
 sethandler <M-A-j> a:vim
