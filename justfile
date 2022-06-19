@@ -5,7 +5,7 @@ alias up := update
 default:
   @just --choose
 
-update: update-brew update-sdkman update-rust update-node update-npm update-gems update-pip update-amplify update-zinit update-spacevim update-xcode update-macos
+update: update-brew update-sdkman update-rust update-node update-npm update-gems update-pip update-amplify update-zinit update-spacevim update-xcode
 
 update-brew:
     brew update
