@@ -5,7 +5,7 @@ alias up := update
 default:
   @just --choose
 
-update: update-brew update-sdkman update-rust update-node update-npm update-gems update-pip update-cdk update-amplify update-zinit update-spacevim update-xcode
+update: update-brew update-sdkman update-rust update-node update-npm update-pip update-cdk update-amplify update-zinit update-spacevim update-xcode
 
 update-brew:
     brew update
@@ -117,7 +117,7 @@ brew-clean:
 
 
 install-packages-npm:
-    npm install -g npm-check-updates aws-cdk @aws-amplify/cli
+    npm install -g npm-check-updates aws-cdk @aws-amplify/cli corepack
 
 install-pkg-pip:
     pip install awscli aws-sam-cli
