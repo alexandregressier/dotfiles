@@ -28,17 +28,20 @@ update-node:
     set -eo pipefail
 
     local -r local_node_version=$(nvm version)
-    local -r local_node_lts=$(nvm ls --no-colors | ggrep -oP "^lts/\K([a-z]+)(?=\ ->\ $local_node_version.*$)")
+    local -r local_major_node_version=$(echo $local_node_version | ggrep -oP "v\K([0-9]+)")
+    local -r local_node_lts=$(nvm ls --no-colors | ggrep -oP "^lts/\K([a-z]+)(?=\ ->\ v$local_major_node_version\..*$)")
     echo "$(tput bold)⬇️  Fetching the latest Node.js $local_node_lts version…$(tput sgr0)"
     local -r remote_node_version=$(nvm version-remote lts/$local_node_lts)
     if [ "$local_node_version" != "$remote_node_version" ]; then
         echo "$(tput setaf 4)❗️ A new version of Node.js $local_node_lts was found!$(tput sgr0)"
         echo "🔄 Updating Node.js $local_node_lts ($local_node_version -> $remote_node_version)…"
-        nvm install "lts/$local_node_lts" --reinstall-packages-from="$previous_node_version" # --latest-npm is not working
-        nvm uninstall "$previous_node_version"
+        nvm install "lts/$local_node_lts" --reinstall-packages-from="$local_node_version"  # --latest-npm is not working
+        nvm uninstall "$local_node_version"
+        nvm use "lts/$local_node_lts"
+        nvm alias default "lts/$local_node_lts"
         nvm cache clear
     fi
-    echo "$(tput setaf 2)✅ Node.js $local_node_lts is up-to-date ($local_node_version)$(tput sgr0)"
+    echo "$(tput setaf 2)✅ Node.js $local_node_lts is up-to-date ($(nvm version))$(tput sgr0)"
 
 update-npm:
     #!/usr/bin/env zsh
@@ -117,7 +120,7 @@ brew-clean:
 
 
 install-packages-npm:
-    npm install -g npm-check-updates aws-cdk @aws-amplify/cli corepack
+    npm install -g npm-check-updates aws-cdk @aws-amplify/cli
 
 install-pkg-pip:
     pip install awscli aws-sam-cli
