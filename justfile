@@ -34,12 +34,12 @@ update-node:
     local -r remote_node_version=$(nvm version-remote lts/$local_node_lts)
     if [ "$local_node_version" != "$remote_node_version" ]; then
         echo "$(tput setaf 4)❗️ A new version of Node.js $local_node_lts was found!$(tput sgr0)"
-        echo "🔄 Updating Node.js $local_node_lts ($local_node_version -> $remote_node_version)…"
-        nvm install "lts/$local_node_lts" --reinstall-packages-from="$local_node_version"  # --latest-npm is not working
-        nvm uninstall "$local_node_version"
-        nvm use "lts/$local_node_lts"
-        nvm alias default "lts/$local_node_lts"
-        nvm cache clear
+        #echo "🔄 Updating Node.js $local_node_lts ($local_node_version -> $remote_node_version)…"
+        #nvm install "lts/$local_node_lts" --reinstall-packages-from="$local_node_version"  # --latest-npm is not working
+        #nvm uninstall "$local_node_version"
+        #nvm use "lts/$local_node_lts"
+        #nvm alias default "lts/$local_node_lts"
+        #nvm cache clear
     fi
     echo "$(tput setaf 2)✅ Node.js $local_node_lts is up-to-date ($(nvm version))$(tput sgr0)"
 
@@ -85,9 +85,9 @@ update-xcode:
     #!/usr/bin/env zsh
     set -eo pipefail
 
-    local -r local_xcode_version=$(xed --version | grep -oE '[^ ]+$')
+    local -r local_xcode_version=$(xcodes list | grep 'Selected' | sd '\s\(.+$' '')
     echo "$(tput bold)⬇️  Fetching the latest Xcode version…$(tput sgr0)"
-    local -r remote_xcode_version=$(xcodes list | tail -1 | grep -oE '^[^ ]+')
+    local -r remote_xcode_version=$(xcodes list | tail -1 | sd '\s\(.+$' '')
     if [ "$local_xcode_version" != "$remote_xcode_version" ]; then
         echo "$(tput setaf 4)❗️ A new version of Xcode was found! ($local_xcode_version -> $remote_xcode_version)$(tput sgr0)"
     else
