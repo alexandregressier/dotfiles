@@ -1,8 +1,10 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+
+
 # ~/.zshrc – For interactive shells (i.e., a terminal with a prompt)
 # Sourced after .zprofile
 # (A shell script runs a non-interactive non-login shell)
-
-safe_source "$FIG_DIR/shell/zshrc.pre.zsh" # Fig (Pre)
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -178,4 +180,6 @@ nodejs () {
 # Anaconda
 conda activate userland
 
-safe_source "$FIG_DIR/shell/zshrc.post.zsh" # Fig (Post)
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
