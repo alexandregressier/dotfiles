@@ -5,7 +5,7 @@ alias up := update
 default:
   @just --choose
 
-update: update-brew update-sdkman update-rust update-node update-npm update-pip update-cdk update-amplify update-zinit update-spacevim update-xcode
+update: update-brew update-sdkman update-rust update-node update-npm update-pip update-gem update-cdk update-amplify update-zinit update-spacevim update-xcode
 
 update-brew:
     brew update
@@ -53,11 +53,11 @@ update-npm:
     echo "$(tput bold)npm -g update$(tput sgr0)"
     npm -g update
 
-update-gems:
-    gem update --system
-
 update-pip:
     pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+
+update-gem:
+    gem update --system
 
 update-cdk:
     npm install -g aws-cdk
@@ -119,8 +119,11 @@ brew-clean:
     brew cleanup
 
 
-install-packages-npm:
+boostrap-npm:
     npm install -g npm-check-updates aws-cdk @aws-amplify/cli
 
-install-pkg-pip:
+bootstrap-pip:
     pip install awscli aws-sam-cli
+
+boostrap-gem:
+    gem install bundler rake cocoapods fastlane
