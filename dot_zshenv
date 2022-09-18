@@ -34,10 +34,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)" # Originally in .zprofile
 export EDITOR='nvim' # https://unix.stackexchange.com/a/197841
 
 # PATH —————————————————————————————————————————————————————————————————————————————————————————————
-# GNU
-append_path "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
-append_path "$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin"
-append_path "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin"
+# Homebrew Executables
+prepend_path "$HOMEBREW_PREFIX/opt/git/bin"
+prepend_path "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
+prepend_path "$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin"
+prepend_path "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin"
 
 # Android
 append_path "$ANDROID_HOME/tools"
