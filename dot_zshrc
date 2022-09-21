@@ -95,10 +95,7 @@ unset SSH_AGENT_PID
 [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ] && export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
 # SDKMAN!
-safe_source "$SDKMAN_DIR/bin/sdkman-init.sh"
-
-# nvm
-safe_source "$NVM_DIR/nvm.sh"
+safe_source "$SDKMAN_DIR/bin/sdkman-init.sh" # Modifies PATH
 
 # Anaconda
 __conda_setup="$("$HOMEBREW_PREFIX/anaconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
@@ -124,6 +121,9 @@ if [[ ! -f $ZINIT_HOME/zinit/zinit.git/zinit.zsh ]]; then
 fi
 source "$ZINIT_HOME/zinit/zinit.git/zinit.zsh" # Modifies PATH
 
+# nvm
+safe_source "$NVM_DIR/nvm.sh" # Modifies PATH
+
 # rvm
 safe_source "$RVM_DIR/scripts/rvm" # Must be last to modify PATH (o/w rvm shows a warning)
 
@@ -138,8 +138,6 @@ safe_source "$HOME/.fzf.zsh" # Loads auto-completion & keybindings
 
 # iTerm2
 safe_source "$HOME/.iterm2_shell_integration.zsh"
-
-
 
 # Zinit ————————————————————————————————————————————————————————————————————————————————————————————
 autoload -Uz _zinit
@@ -203,7 +201,7 @@ cnode () {
 gradle-or-gradlew () {
     local gradlew_dir
     local dir="$PWD"
-    while [[ "$dir" != / ]]; do
+    while [[ "$dir" != "$HOME" ]]; do
         if [[ -f "$dir/gradlew" ]]; then
             gradlew_dir="$(realpath --relative-to="$PWD" "$dir")"
             break
@@ -219,8 +217,6 @@ gradle-or-gradlew () {
     fi
 }
 
-# Commands —————————————————————————————————————————————————————————————————————————————————————————
-conda activate userland
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

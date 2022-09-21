@@ -34,18 +34,23 @@ eval "$(/opt/homebrew/bin/brew shellenv)" # Originally in .zprofile
 export EDITOR='nvim' # https://unix.stackexchange.com/a/197841
 
 # PATH —————————————————————————————————————————————————————————————————————————————————————————————
-# Homebrew Executables
-prepend_path "$HOMEBREW_PREFIX/opt/git/bin"
+# GNU
 prepend_path "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
 prepend_path "$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin"
 prepend_path "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin"
 
+# Git
+prepend_path "$HOMEBREW_PREFIX/opt/git/bin"
+
 # Android
-append_path "$ANDROID_HOME/tools"
-append_path "$ANDROID_HOME/platform-tools"
+prepend_path "$ANDROID_HOME/tools"
+prepend_path "$ANDROID_HOME/platform-tools"
+
+# Python
+prepend_path "$HOMEBREW_PREFIX/opt/python/libexec/bin"
 
 # rustup
-safe_source "$HOME/.cargo/env" # Only updates the PATH
+safe_source "$HOME/.cargo/env" # Only updates the PATH (prepend)
 
 # rvm
-append_path "$RVM_DIR/bin" # Not the gems
+prepend_path "$RVM_DIR/bin" # Not the gems

@@ -5,7 +5,7 @@ alias up := update
 default:
   @just --choose
 
-update: update-brew update-sdkman update-rust update-node update-npm update-pip update-gem update-cdk update-amplify update-zinit update-spacevim update-xcode
+update: update-brew update-sdkman update-node update-npm update-pip update-setuptools update-conda update-rust update-gems update-cdk update-amplify update-zinit update-spacevim has-update-xcode
 
 update-brew:
     brew update
@@ -18,9 +18,6 @@ update-sdkman:
     sdk update
     echo "$(tput bold)sdk upgrade$(tput sgr0)"
     sdk upgrade
-
-update-rust:
-    rustup update
 
 update-node:
     #!/usr/bin/env zsh
@@ -54,9 +51,18 @@ update-npm:
     npm -g update
 
 update-pip:
-    pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+    python3 -m pip install --upgrade pip
 
-update-gem:
+update-setuptools:
+    python3 -m pip install --upgrade setuptools
+
+update-conda:
+    conda update --name base --channel defaults conda
+
+update-rust:
+    rustup update
+
+update-gems:
     gem update --system
 
 update-cdk:
@@ -81,7 +87,7 @@ update-spacevim:
 update-tealdeer:
     tldr --update
 
-update-xcode:
+has-update-xcode:
     #!/usr/bin/env zsh
     set -eo pipefail
 
@@ -122,8 +128,11 @@ brew-clean:
 boostrap-npm:
     npm install -g npm-check-updates aws-cdk @aws-amplify/cli
 
-bootstrap-pip:
-    pip install awscli aws-sam-cli
+bootstrap-pip-brew:
+    brew install ranger awscli aws-sam-cli
 
-boostrap-gem:
+bootstrap-pip:
+    pip install pip-review
+
+boostrap-gems:
     gem install bundler rake cocoapods fastlane
