@@ -48,4 +48,4 @@ append_path "$ANDROID_HOME/platform-tools"
 safe_source "$HOME/.cargo/env" # Only updates the PATH
 
 # rvm
-append_path "$RVM_DIR/bin"
+append_path "$RVM_DIR/bin" # Not the gems
