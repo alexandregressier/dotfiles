@@ -149,18 +149,12 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
-# Powerlevel10k
-zinit ice depth=1 # git clone depth
-zinit light romkatv/powerlevel10k
-
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
 
-zinit light hlissner/zsh-autopair
-zinit light Aloxaf/fzf-tab
-zinit snippet OMZ::plugins/dirhistory/dirhistory.plugin.zsh
-
-zinit light gradle/gradle-completion
+# Powerlevel10k
+zinit ice depth=1 # git clone depth
+zinit light romkatv/powerlevel10k
 
 # zoxide
 zinit ice wait"2" as"command" from"gh-r" lucid \
@@ -172,6 +166,12 @@ zinit light ajeetdsouza/zoxide
 # enhancd
 export ENHANCD_COMMAND=ecd
 zinit light b4b4r07/enhancd
+
+zinit light hlissner/zsh-autopair
+zinit light Aloxaf/fzf-tab
+zinit snippet OMZ::plugins/dirhistory/dirhistory.plugin.zsh
+
+zinit light gradle/gradle-completion
 
 # Functions ————————————————————————————————————————————————————————————————————————————————————————
 tput-colors () {
