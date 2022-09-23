@@ -52,6 +52,7 @@ update-npm:
 
 update-pip:
     python3 -m pip install --upgrade pip
+    pip-review --auto
 
 update-setuptools:
     python3 -m pip install --upgrade setuptools
@@ -129,10 +130,10 @@ boostrap-npm:
     npm install -g npm-check-updates aws-cdk @aws-amplify/cli
 
 bootstrap-pip-brew:
-    brew install ranger awscli aws-sam-cli
+    brew install ranger awscli speedtest-cli
 
 bootstrap-pip:
-    pip install pip-review
+    pip install pip-review pip-autoremove aws-sam-cli
 
 boostrap-gems:
     gem install bundler rake cocoapods fastlane
