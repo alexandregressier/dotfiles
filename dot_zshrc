@@ -1,3 +1,7 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+
+
 # ~/.zshrc – For interactive shells (i.e., a terminal with a prompt)
 # Sourced after .zprofile
 # (A shell script runs a non-interactive non-login shell)
@@ -213,3 +217,7 @@ gradle-or-gradlew () {
         command gradle "$@"
     fi
 }
+
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

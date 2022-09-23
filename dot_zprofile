@@ -1,3 +1,7 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zprofile.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.pre.zsh"
+
+
 # ~/.zprofile – For environment variables unrelated to the PATH
 # Sourced only once at login time, it’s best to put things that are loaded only once and can be
 # inherited by subshells
@@ -7,3 +11,7 @@
 # Compiler flags
 export ARCHFLAGS="-arch $(uname -m)"
 export MAKEFLAGS="-j$(/usr/sbin/sysctl -n hw.ncpu)"
+
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zprofile.post.zsh" ]] && builtin source "$HOME/.fig/shell/zprofile.post.zsh"
