@@ -12,3 +12,5 @@
     program = gpg
 [commit]
     gpgsign = true
+[diff-so-fancy]
+	stripLeadingSymbols = false
