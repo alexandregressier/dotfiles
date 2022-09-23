@@ -160,10 +160,14 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
 
 zinit light hlissner/zsh-autopair
+zinit light Aloxaf/fzf-tab
+zinit snippet OMZ::plugins/dirhistory/dirhistory.plugin.zsh
 
 zinit light gradle/gradle-completion
 
-zinit snippet OMZ::plugins/dirhistory/dirhistory.plugin.zsh
+# enhancd
+export ENHANCD_COMMAND=ecd
+zinit light b4b4r07/enhancd
 
 # Functions ————————————————————————————————————————————————————————————————————————————————————————
 tput-colors () {
