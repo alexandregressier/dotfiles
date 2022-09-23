@@ -1,6 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-
 # ~/.zshrc – For interactive shells (i.e., a terminal with a prompt)
 # Sourced after .zprofile
 # (A shell script runs a non-interactive non-login shell)
@@ -8,19 +5,20 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-safe_source "$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh" # Fig won't load otherwise
+safe_source "$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # Aliases ——————————————————————————————————————————————————————————————————————————————————————————
 alias ls='exa'
 alias ll='exa --long --header'
 alias la='exa --long --header --all'
-alias lt='exa --tree'
-alias cat='bat'
+alias lld='exa --long --header --list-dirs'
+alias tree='exa --tree'
 alias rm='trash'
 
 alias e="$EDITOR"
 alias d='docker'
 alias b='gradle-or-gradlew'
+alias kt='kotlin'
 alias py='python'
 alias lg='lazygit'
 
@@ -33,9 +31,6 @@ alias gd='git diff'
 alias gc='git commit'
 alias gl='git log'
 alias gp='git push'
-
-# openssl
-alias openssl='/usr/bin/openssl' # O/w openssl from conda takes precedence
 
 # chezmoi
 alias c='chezmoi'
@@ -94,8 +89,19 @@ bindkey '^x^e' edit-command-line
 unset SSH_AGENT_PID
 [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ] && export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
+# Zinit
+if [[ ! -f $ZINIT_HOME/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager" \
+        "(%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$ZINIT_HOME/zinit" && command chmod g-rwX "$ZINIT_HOME/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$ZINIT_HOME/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+source "$ZINIT_HOME/zinit/zinit.git/zinit.zsh" # Prepends PATH
+
 # SDKMAN!
-safe_source "$SDKMAN_DIR/bin/sdkman-init.sh" # Modifies PATH
+safe_source "$SDKMAN_DIR/bin/sdkman-init.sh" # Prepends PATH
 
 # Anaconda
 __conda_setup="$("$HOMEBREW_PREFIX/anaconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
@@ -110,31 +116,22 @@ else
 fi
 unset __conda_setup
 
-# Zinit
-if [[ ! -f $ZINIT_HOME/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager" \
-        "(%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$ZINIT_HOME/zinit" && command chmod g-rwX "$ZINIT_HOME/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$ZINIT_HOME/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
-fi
-source "$ZINIT_HOME/zinit/zinit.git/zinit.zsh" # Modifies PATH
+conda deactivate
 
 # nvm
-safe_source "$NVM_DIR/nvm.sh" # Modifies PATH
+safe_source "$NVM_DIR/nvm.sh" # Prepends PATH
 
 # rvm
-safe_source "$RVM_DIR/scripts/rvm" # Must be last to modify PATH (o/w rvm shows a warning)
+safe_source "$RVM_DIR/scripts/rvm" # Must be last to prepend PATH (o/w rvm shows a warning)
+
+# fzf
+safe_source "$HOME/.fzf.zsh" # Appends PATH + Loads auto-completion & keybindings
 
 # Powerlevel10k
 safe_source "$HOME/.p10k.zsh" # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
 
 # zoxide
 eval "$(zoxide init zsh --cmd cd)"
-
-# fzf
-safe_source "$HOME/.fzf.zsh" # Loads auto-completion & keybindings
 
 # iTerm2
 safe_source "$HOME/.iterm2_shell_integration.zsh"
@@ -216,7 +213,3 @@ gradle-or-gradlew () {
         command gradle "$@"
     fi
 }
-
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
