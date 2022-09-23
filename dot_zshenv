@@ -1,6 +1,7 @@
 # ~/.zshenv – For environment variables related to the PATH
 # Always sourced, should run as fast as possible
 
+
 # Functions ————————————————————————————————————————————————————————————————————————————————————————
 safe_source () {
     test -f "$1" && source "$1"
@@ -32,8 +33,12 @@ export EDITOR='nvim' # https://unix.stackexchange.com/a/197841
 
 # PATH —————————————————————————————————————————————————————————————————————————————————————————————
 typeset -U path # Prevent duplicates in the $path array variable
+path=() # Reset $path in case of subshells (e.g., ranger)
 
-# /etc/paths.d/
+# /etc/paths
+for dir in $(/bin/cat /etc/paths); do
+    append_path $dir
+done
 for dir in $(/bin/cat /etc/paths.d/*); do
     prepend_path $dir
 done
@@ -60,5 +65,4 @@ safe_source "$HOME/.cargo/env" # Only updates the PATH (prepend)
 prepend_path "$RVM_DIR/bin" # Not the gems
 
 # local/
-prepend_path /usr/local/bin
 prepend_path "$HOME/.local/bin"
