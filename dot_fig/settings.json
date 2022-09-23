@@ -1,8 +1,0 @@
-{
-  "autocomplete.disable" : false,
-  "autocomplete.fontFamily" : "JetBrains Mono",
-  "autocomplete.fontSize" : 14,
-  "autocomplete.height" : 140,
-  "autocomplete.theme" : "light",
-  "telemetry.disabled" : true
-}
