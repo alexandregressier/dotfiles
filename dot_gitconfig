@@ -6,11 +6,19 @@
     defaultBranch = main
 [core]
     editor = vim
+    pager = delta
     autocrlf = input
 	excludesFile = ~/.gitignore
-[gpg]
-    program = gpg
 [commit]
     gpgsign = true
-[diff-so-fancy]
-	stripLeadingSymbols = false
+[diff]
+    colorMoved = default
+[merge]
+    conflictstyle = diff3
+[interactive]
+    diffFilter = delta --color-only
+[gpg]
+    program = gpg
+[delta]
+    navigate = true
+    light = true
