@@ -7,49 +7,6 @@
 # confirmations, etc.) must go above this block; everything else may go below.
 safe_source "$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
 
-# Aliases ——————————————————————————————————————————————————————————————————————————————————————————
-alias e="subl"
-alias ez='e ~/.zshrc'
-alias eze='e ~/.zshenv'
-
-alias ls='exa'
-alias ll='exa --long --header'
-alias la='exa --long --header --all'
-alias lld='exa --long --header --list-dirs'
-alias tree='exa --tree'
-
-alias rm='trash'
-
-alias d='docker'
-alias b='gradle-or-gradlew'
-alias kt='kotlin'
-alias py='python'
-alias lg='lazygit'
-
-# Git
-alias g='git'
-alias gs='git status'
-alias ga='git add'
-alias gr='git rm'
-alias gd='git diff'
-alias gc='git commit'
-alias gl='git log'
-alias gp='git push'
-
-# chezmoi
-alias c='chezmoi'
-alias ccd="cd $CHEZMOI_ROOT"
-alias ce='chezmoi edit'
-alias cs='chezmoi status'
-alias ca='chezmoi add'
-alias crm='chezmoi remove'
-alias cdf='chezmoi diff'
-alias cdiff='chezmoi diff'
-alias ctree="exa --tree $CHEZMOI_ROOT"
-alias cl="git -C $CHEZMOI_ROOT log"
-alias cshow="git -C $CHEZMOI_ROOT show"
-alias cpush="git -C $CHEZMOI_ROOT push"
-
 # Zsh ——————————————————————————————————————————————————————————————————————————————————————————————
 # History – https://unix.stackexchange.com/a/273863
 HISTSIZE=1000000000
@@ -150,7 +107,6 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
-
 # Powerlevel10k
 zinit ice depth=1 # git clone depth
 zinit light romkatv/powerlevel10k
@@ -226,3 +182,46 @@ gradle-or-gradlew () {
         command gradle "$@"
     fi
 }
+
+# Aliases ——————————————————————————————————————————————————————————————————————————————————————————
+alias e="subl"
+alias ez='e ~/.zshrc'
+alias eze='e ~/.zshenv'
+
+alias ls='exa'
+alias ll='exa --long --header'
+alias la='exa --long --header --all'
+alias lld='exa --long --header --list-dirs'
+alias tree='exa --tree'
+
+alias rm='trash'
+
+alias d='docker'
+alias b='gradle-or-gradlew'
+alias kt='kotlin'
+alias py='python'
+alias lg='lazygit'
+
+# Git
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gr='git rm'
+alias gd='git diff'
+alias gc='git commit'
+alias gl='git log'
+alias gp='git push'
+
+# chezmoi
+alias c='chezmoi'
+alias ccd="cd $CHEZMOI_ROOT"
+alias ce='chezmoi edit'
+alias cs='chezmoi status'
+alias ca='chezmoi add'
+alias crm='chezmoi remove'
+alias cdf='chezmoi diff'
+alias cdiff='chezmoi diff'
+alias ctree="exa --tree $CHEZMOI_ROOT"
+alias cl="git -C $CHEZMOI_ROOT log"
+alias cshow="git -C $CHEZMOI_ROOT show"
+alias cpush="git -C $CHEZMOI_ROOT push"
