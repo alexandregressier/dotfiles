@@ -58,7 +58,7 @@ update-setuptools:
     python3 -m pip install --upgrade setuptools
 
 update-conda:
-    conda update --name base --channel defaults conda
+    conda update --yes --name base --channel defaults conda
 
 update-rust:
     rustup update
