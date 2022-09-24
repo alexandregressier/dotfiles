@@ -187,6 +187,7 @@ gradle-or-gradlew () {
 alias e="subl"
 alias ez='e ~/.zshrc'
 alias eze='e ~/.zshenv'
+alias ej='e ~/justfile'
 
 alias ls='exa'
 alias ll='exa --long --header'
