@@ -1,7 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-
-
 # ~/.zshrc – For interactive shells (i.e., a terminal with a prompt)
 # Sourced after .zprofile
 # (A shell script runs a non-interactive non-login shell)
@@ -12,14 +8,18 @@
 safe_source "$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
 
 # Aliases ——————————————————————————————————————————————————————————————————————————————————————————
+alias e="subl"
+alias ez='e ~/.zshrc'
+alias eze='e ~/.zshenv'
+
 alias ls='exa'
 alias ll='exa --long --header'
 alias la='exa --long --header --all'
 alias lld='exa --long --header --list-dirs'
 alias tree='exa --tree'
+
 alias rm='trash'
 
-alias e="$EDITOR"
 alias d='docker'
 alias b='gradle-or-gradlew'
 alias kt='kotlin'
@@ -43,6 +43,7 @@ alias ce='chezmoi edit'
 alias cs='chezmoi status'
 alias ca='chezmoi add'
 alias crm='chezmoi remove'
+alias cdf='chezmoi diff'
 alias cdiff='chezmoi diff'
 alias ctree="exa --tree $CHEZMOI_ROOT"
 alias cl="git -C $CHEZMOI_ROOT log"
@@ -149,8 +150,6 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
-zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma/fast-syntax-highlighting
 
 # Powerlevel10k
 zinit ice depth=1 # git clone depth
@@ -167,8 +166,10 @@ zinit light ajeetdsouza/zoxide
 export ENHANCD_COMMAND=ecd
 zinit light b4b4r07/enhancd
 
+zinit light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light marlonrichert/zsh-autocomplete
 zinit light hlissner/zsh-autopair
-zinit light Aloxaf/fzf-tab
 zinit snippet OMZ::plugins/dirhistory/dirhistory.plugin.zsh
 
 zinit light gradle/gradle-completion
@@ -225,7 +226,3 @@ gradle-or-gradlew () {
         command gradle "$@"
     fi
 }
-
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
