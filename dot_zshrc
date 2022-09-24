@@ -92,6 +92,9 @@ safe_source "$HOME/.fzf.zsh" # Appends PATH + Loads auto-completion & keybinding
 # Powerlevel10k
 safe_source "$HOME/.p10k.zsh" # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
 
+# zoxide
+eval "$(zoxide init zsh --cmd cd)"
+
 # iTerm2
 safe_source "$HOME/.iterm2_shell_integration.zsh"
 
@@ -110,13 +113,6 @@ zinit light-mode for \
 # Powerlevel10k
 zinit ice depth=1 # git clone depth
 zinit light romkatv/powerlevel10k
-
-# zoxide
-zinit ice wait"2" as"command" from"gh-r" lucid \
-  mv"zoxide*/zoxide -> zoxide" \
-  atclone"./zoxide init zsh --cmd cd > init.zsh" \
-  atpull"%atclone" src"init.zsh" nocompile'!'
-zinit light ajeetdsouza/zoxide
 
 # enhancd
 export ENHANCD_COMMAND=ecd
