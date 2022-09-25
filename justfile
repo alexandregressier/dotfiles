@@ -5,7 +5,7 @@ alias up := update
 default:
   @just --choose
 
-update: update-brew update-sdkman update-node update-npm update-pip update-setuptools update-conda update-rust update-gems update-cdk update-amplify update-zinit update-spacevim has-update-xcode
+update: update-brew update-sdkman update-node update-npm update-pip update-conda update-rust update-gems update-cdk update-amplify update-zinit update-spacevim has-update-xcode
 
 update-brew:
     brew update
@@ -53,9 +53,6 @@ update-npm:
 update-pip:
     python3 -m pip install --upgrade pip
     pip-review --auto
-
-update-setuptools:
-    python3 -m pip install --upgrade setuptools
 
 update-conda:
     conda update --yes --name base --channel defaults conda
