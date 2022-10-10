@@ -3,7 +3,9 @@
 # inherited by subshells
 # (ranger S runs an interactive non-login shell)
 
-# Variables ————————————————————————————————————————————————————————————————————————————————————————
-# Compiler flags
+# Compiler Flags
 export ARCHFLAGS="-arch $(uname -m)"
 export MAKEFLAGS="-j$(/usr/sbin/sysctl -n hw.ncpu)"
+
+# Serverless Stack Toolkit (SST)
+export SST_TELEMETRY_DISABLED=1

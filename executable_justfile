@@ -123,14 +123,14 @@ brew-clean:
     brew cleanup
 
 
-boostrap-npm:
-    npm install -g npm-check-updates aws-cdk @aws-amplify/cli
+bootstrap-npm:
+    npm install -g npm-check-updates aws-cdk @aws-amplify/cli @serverless-stack/cli
 
 bootstrap-pip-brew:
     brew install ranger awscli speedtest-cli
 
 bootstrap-pip:
-    pip install pip-review pip-autoremove aws-sam-cli
+    pip install pip-review pip-autoremove # aws-sam-cli
 
 boostrap-gems:
     gem install bundler rake cocoapods fastlane
