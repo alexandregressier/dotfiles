@@ -51,6 +51,7 @@ prepend_path "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin"
 
 # Android
 prepend_path "$ANDROID_HOME/tools"
+prepend_path "$ANDROID_HOME/tools/bin"
 prepend_path "$ANDROID_HOME/platform-tools"
 
 # Python
