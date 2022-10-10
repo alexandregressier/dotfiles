@@ -124,7 +124,7 @@ brew-clean:
 
 
 bootstrap-npm:
-    npm install -g npm-check-updates aws-cdk @aws-amplify/cli @serverless-stack/cli
+    npm install -g npm-check-updates aws-cdk @aws-amplify/cli @serverless-stack/cli create-sst
 
 bootstrap-pip-brew:
     brew install ranger awscli speedtest-cli
