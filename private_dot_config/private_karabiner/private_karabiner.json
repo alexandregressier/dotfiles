@@ -42,7 +42,7 @@
                         ]
                     },
                     {
-                        "description": "right_control + qwasdfg -> Mission Control",
+                        "description": "right_control + qwasdfgh -> Mission Control",
                         "manipulators": [
                             {
                                 "from": {
@@ -204,6 +204,28 @@
                                 "to": [
                                     {
                                         "key_code": "5",
+                                        "modifiers": [
+                                            "command",
+                                            "option",
+                                            "shift",
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "6",
                                         "modifiers": [
                                             "command",
                                             "option",
