@@ -127,7 +127,7 @@ bootstrap-npm:
     npm install -g npm-check-updates aws-cdk @aws-amplify/cli @serverless-stack/cli create-sst
 
 bootstrap-pip-brew:
-    brew install ranger awscli speedtest-cli
+    brew install xonsh ranger awscli speedtest-cli
 
 bootstrap-pip:
     pip install pip-review pip-autoremove # aws-sam-cli
