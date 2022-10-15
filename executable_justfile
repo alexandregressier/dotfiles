@@ -118,7 +118,7 @@ decrypt:
     gpg -d
 
 
-brew-clean:
+clean-brew:
     brew autoremove
     brew cleanup
 
