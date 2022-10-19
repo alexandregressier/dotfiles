@@ -140,9 +140,9 @@ tput-colors () {
 }
 
 cjdk () {
-    JAVA_VERSION="$1"
+    JAVA_VERSION=$([[ "$1" == '8' ]] && echo "1.8" || echo "$1")
     JAVA_HOME="$(/usr/libexec/java_home --version $JAVA_VERSION)"
-    java --version
+    java -version
 }
 
 cnode () {
