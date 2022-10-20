@@ -14,7 +14,7 @@ append_path () {
 
 # Variables ————————————————————————————————————————————————————————————————————————————————————————
 # Java
-export JAVA_VERSION='19' # Filter from `java_home --help`
+export JAVA_VERSION='17' # Filter from `java_home --help`
 export JAVA_ARCH="$(arch)" # Filter from `java_home --help`
 
 # Homes
