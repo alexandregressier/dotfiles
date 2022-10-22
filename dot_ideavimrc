@@ -32,8 +32,8 @@ nmap <Leader>qq <Action>(Exit)
 nmap <Leader>qr <Action>(InvalidateCaches)
 
 " IdeaVIM
-map <Leader>fvd :e ~/.ideavimrc<cr>
-map <Leader>zt <Action>(VimFindActionIdAction)
+map <Leader>ze :e ~/.ideavimrc<cr>
+map <Leader>zv <Action>(VimFindActionIdAction)
 
 " NERDTree
 map <Leader><Esc> :NERDTree<cr>
@@ -149,6 +149,7 @@ map <Leader><M-r> <Action>(ReplaceInPath)
 
 " Formatting
 nmap == <Action>(ReformatCode)
+vmap <Leader>== <Action>(com.andrewbrookins.idea.wrap.WrapAction)
 
 " Selection
 nmap vai vaI
