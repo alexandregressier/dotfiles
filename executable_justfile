@@ -118,6 +118,10 @@ decrypt:
     gpg -d
 
 
+datediff DATE1 DATE2:
+    @echo "$(( ($(date +%s -d '{{DATE1}}') - $(date +%s -d '{{DATE2}}')) / 86400 )) day(s)"
+
+
 clean-brew:
     brew autoremove
     brew cleanup
