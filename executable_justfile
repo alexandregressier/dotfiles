@@ -5,7 +5,7 @@ alias up := update
 default:
   @just --choose
 
-update: update-brew update-sdkman update-node update-npm update-pip update-conda update-rust update-gems update-cdk update-amplify update-zinit update-spacevim update-tealdeer has-update-xcode
+update: update-brew update-sdkman update-node update-npm update-pip update-conda update-rust update-gems update-tuist update-amplify update-zinit update-spacevim update-tealdeer has-update-xcode
 
 update-brew:
     brew update
@@ -63,8 +63,8 @@ update-rust:
 update-gems:
     gem update --system
 
-update-cdk:
-    npm install -g aws-cdk
+update-tuist:
+    tuist update
 
 update-amplify:
     amplify upgrade
