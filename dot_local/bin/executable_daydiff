@@ -1,0 +1,2 @@
+#!/usr/bin/env zsh
+echo "$(( ($(date +%s -d "$1") - $([[ -n "$2" ]] && date +%s -d "$2" || date +%s -d $(gdate --iso-8601) )) / 86400 )) day(s)"
