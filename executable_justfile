@@ -25,18 +25,27 @@ update-node:
     set -eo pipefail
 
     local -r local_node_version=$(nvm version)
-    local -r local_major_node_version=$(echo $local_node_version | ggrep -oP "v\K([0-9]+)")
-    local -r local_node_lts=$(nvm ls --no-colors | ggrep -oP "^lts/\K([a-z]+)(?=\ ->\ v$local_major_node_version\..*$)")
-    echo "$(tput bold)⬇️  Fetching the latest Node.js $local_node_lts version…$(tput sgr0)"
+    echo "ℹ️  Local Node.js version: $(tput bold)$local_node_version$(tput sgr0)"
+    local -r local_major_node_version=$(echo $local_node_version | ggrep -oP "v\K(\d+)")
+    echo "ℹ️  Local Node.js major version: $(tput bold)$local_major_node_version$(tput sgr0)"
+    local -r local_node_lts=$(nvm ls --no-colors | ggrep -oP "^lts/\K([a-z]+)(?=\s->\sv$local_major_node_version\..*$)")
+    echo "ℹ️  Local Node.js LTS: $(tput bold)$local_node_lts$(tput sgr0)"
     local -r remote_node_version=$(nvm version-remote lts/$local_node_lts)
+    echo "ℹ️  Remote Node.js version: $(tput bold)$remote_node_version$(tput sgr0)"
+
     if [ "$local_node_version" != "$remote_node_version" ]; then
         echo "$(tput setaf 4)❗️ A new version of Node.js $local_node_lts was found!$(tput sgr0)"
-        #echo "🔄 Updating Node.js $local_node_lts ($local_node_version -> $remote_node_version)…"
-        #nvm install "lts/$local_node_lts" --reinstall-packages-from="$local_node_version"  # --latest-npm is not working
-        #nvm uninstall "$local_node_version"
-        #nvm use "lts/$local_node_lts"
-        #nvm alias default "lts/$local_node_lts"
-        #nvm cache clear
+
+        echo "$(tput bold)nvm install lts/$local_node_lts --reinstall-packages-from=$local_node_version --latest-npm$(tput sgr0)"
+        nvm install "lts/$local_node_lts" --reinstall-packages-from="$local_node_version" --latest-npm
+        echo "$(tput bold)nvm alias default lts/$local_node_lts$(tput sgr0)"
+        nvm alias default "lts/$local_node_lts"
+        echo "$(tput bold)nvm use lts/$local_node_lts$(tput sgr0)"
+        nvm use "lts/$local_node_lts"
+        echo "$(tput bold)nvm uninstall $local_node_version$(tput sgr0)"
+        nvm uninstall "$local_node_version"
+        echo "$(tput bold)nvm cache clear$(tput sgr0)"
+        nvm cache clear
     fi
     echo "$(tput setaf 2)✅ Node.js $local_node_lts is up-to-date ($(nvm version))$(tput sgr0)"
 
