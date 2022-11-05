@@ -1,4 +1,5 @@
 # ~/.zprofile – For environment variables unrelated to the PATH
+# Sourced after .zshenv
 # Sourced only once at login time, it’s best to put things that are loaded only once and can be
 # inherited by subshells
 # (ranger S runs an interactive non-login shell)

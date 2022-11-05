@@ -1,16 +1,6 @@
 # ~/.zshenv – For environment variables related to the PATH
+# Sourced first
 # Always sourced, should run as fast as possible
-
-# Functions ————————————————————————————————————————————————————————————————————————————————————————
-safe_source () {
-    test -f "$1" && source "$1"
-}
-prepend_path () {
-    test -d "$1" && path=($1 $path)
-}
-append_path () {
-    test -d "$1" && path+=($1)
-}
 
 # Variables ————————————————————————————————————————————————————————————————————————————————————————
 # Java
@@ -28,6 +18,17 @@ export CHEZMOI_ROOT="$HOME/.local/share/chezmoi"
 
 # Applications
 export EDITOR='nvim' # https://unix.stackexchange.com/a/197841
+
+# Functions ————————————————————————————————————————————————————————————————————————————————————————
+safe_source () {
+    test -f "$1" && source "$1"
+}
+prepend_path () {
+    test -d "$1" && path=($1 $path)
+}
+append_path () {
+    test -d "$1" && path+=($1)
+}
 
 # PATH —————————————————————————————————————————————————————————————————————————————————————————————
 typeset -U path # Prevent duplicates in the $path array variable
