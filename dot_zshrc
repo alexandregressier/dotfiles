@@ -122,8 +122,10 @@ zinit light zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light marlonrichert/zsh-autocomplete
 zinit light hlissner/zsh-autopair
-zinit snippet OMZ::plugins/macos/macos.plugin.zsh
-zinit snippet OMZ::plugins/dirhistory/dirhistory.plugin.zsh
+
+zinit snippet OMZ::plugins/aws
+zinit snippet OMZ::plugins/dirhistory
+zinit snippet OMZ::plugins/macos
 
 zinit light gradle/gradle-completion
 
