@@ -133,7 +133,7 @@ clean-brew:
 
 
 bootstrap-npm:
-    npm install -g nx pnpm yarn npm-check-updates aws-cdk @aws-amplify/cli @serverless-stack/cli create-nx-workspace create-sst create-next-app create-react-app
+    npm install -g nx pnpm yarn npm-check-updates aws-cdk @aws-amplify/cli @serverless-stack/cli create-nx-workspace create-nx-plugin create-sst create-next-app create-react-app
 
 bootstrap-pip-brew:
     brew install xonsh ranger awscli speedtest-cli
