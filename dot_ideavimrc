@@ -248,9 +248,9 @@ sethandler <C-g> v:vim
 xmap <C-g> <Action>($SearchWeb)
 
 " DataSpell
-sethandler <M-o> a:vim
-nnoremap <M-o> :action NotebookInsertCellBelowAction<CR>i#<Space>
-sethandler <M-S-o> a:vim
-nnoremap <M-S-o> :action NotebookInsertCellAboveAction<CR>i
-sethandler <M-d> a:vim
-nnoremap <M-d> :action NotebookDeleteCellAction<CR>
+"sethandler <M-o> a:vim
+"nnoremap <M-o> :action NotebookInsertCellBelowAction<CR>i#<Space>
+"sethandler <M-S-o> a:vim
+"nnoremap <M-S-o> :action NotebookInsertCellAboveAction<CR>i
+"sethandler <M-d> a:vim
+"nnoremap <M-d> :action NotebookDeleteCellAction<CR>
