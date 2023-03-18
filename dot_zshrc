@@ -201,6 +201,7 @@ alias b='gradle-or-gradlew'
 alias kt='kotlin'
 alias py='python'
 alias lg='lazygit'
+alias tf='terraform'
 
 # Git
 alias g='git'
