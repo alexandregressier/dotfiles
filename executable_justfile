@@ -115,15 +115,6 @@ show-path:
     echo $PATH | tr ':' '\n'
 
 
-encrypt:
-    @echo "$(tput bold)🔏 Paste the message to encrypt (Return + Ctrl+D when done):$(tput sgr0)"
-    gpg -esar alexandre@gressier.dev
-
-decrypt:
-    @echo "$(tput bold)🔓 Paste the message to decrypt (Return + Ctrl+D when done):$(tput sgr0)"
-    gpg -d
-
-
 clean-brew:
     brew autoremove
     brew cleanup
