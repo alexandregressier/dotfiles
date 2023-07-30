@@ -239,16 +239,11 @@
                         ]
                     },
                     {
-                        "description": "left_control -> left_control || Spotlight",
+                        "description": "Raycast",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "left_control",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
+                                    "key_code": "left_control"
                                 },
                                 "to": [
                                     {
@@ -257,7 +252,38 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "f4",
+                                        "key_code": "f1",
+                                        "modifiers": [
+                                            "fn",
+                                            "command",
+                                            "option",
+                                            "shift",
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "f5",
                                         "modifiers": [
                                             "fn",
                                             "command",
@@ -276,12 +302,7 @@
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "right_control",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
+                                    "key_code": "right_control"
                                 },
                                 "to": [
                                     {
@@ -290,7 +311,71 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "f1",
+                                        "key_code": "f2",
+                                        "modifiers": [
+                                            "fn",
+                                            "command",
+                                            "option",
+                                            "shift",
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "right_control",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_control",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "f3",
+                                        "modifiers": [
+                                            "fn",
+                                            "command",
+                                            "option",
+                                            "shift",
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "right_control",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_control",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "f4",
                                         "modifiers": [
                                             "fn",
                                             "command",
