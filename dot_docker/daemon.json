@@ -7,6 +7,6 @@
   },
   "experimental": false,
   "insecure-registries": [
-    "host.docker.internal:5000"
+    "host.docker.internal:50000"
   ]
 }
