@@ -5,5 +5,8 @@
       "enabled": true
     }
   },
-  "experimental": false
+  "experimental": false,
+  "insecure-registries": [
+    "host.docker.internal:5000"
+  ]
 }
