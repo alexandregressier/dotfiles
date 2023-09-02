@@ -47,9 +47,11 @@ zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
 # Scripts ——————————————————————————————————————————————————————————————————————————————————————————
-# SSH agent
+# GPG & SSH agents
+export GPG_TTY="$(tty)"
 unset SSH_AGENT_PID
 [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ] && export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+gpgconf --launch gpg-agent
 
 # Zinit
 if [[ ! -f $ZINIT_HOME/zinit/zinit.git/zinit.zsh ]]; then
@@ -206,7 +208,7 @@ alias cms='chezmoi status'
 alias cma='chezmoi add'
 alias cmrm='chezmoi remove'
 alias cmdiff='chezmoi diff'
-alias cmd='cmdiff'
+alias cmdf='cmdiff'
 alias cmtree="exa --tree $CHEZMOI_ROOT"
 alias cmlog="git -C $CHEZMOI_ROOT log"
 alias cml="cmlog"
