@@ -8,7 +8,7 @@
     editor = vim
     pager = delta
     autocrlf = input
-	excludesFile = ~/.gitignore
+    excludesFile = ~/.gitignore
 [commit]
     gpgsign = true
 [diff]
@@ -22,3 +22,5 @@
 [delta]
     navigate = true
     light = true
+[includeIf "gitdir:~/Projects/Multiplatforge/Repositories/"]
+    path = .gitconfig-multiplatforge
