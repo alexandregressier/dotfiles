@@ -1,7 +1,7 @@
 [user]
     name = Alexandre Gressier
     email = alexandre@gressier.dev
-    signingkey = 99290D13C3CFFA3C
+    signingkey = 3ACC7B6181F3C8BB
 [init]
     defaultBranch = main
 [core]
