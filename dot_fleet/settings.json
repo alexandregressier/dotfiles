@@ -1,4 +1,7 @@
 {
     "theme": "dark_purple",
-    "vimEmulationEnabled": true
+    "vimEmulationEnabled": true,
+    "fus.sendAllowed": false,
+    "terminal.caretShape": "Block",
+    "terminal.enableFocusEditorOnEsc": true
 }
