@@ -1,3 +1,4 @@
 {
-    "theme": "dark_purple"
+    "theme": "dark_purple",
+    "vimEmulationEnabled": true
 }
