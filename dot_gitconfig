@@ -22,5 +22,7 @@
 [delta]
     navigate = true
     light = true
-[includeIf "gitdir:~/Projects/Multiplatforge/Repositories/"]
+[includeIf "gitdir:~/Multiplatforge/"]
     path = .gitconfig-multiplatforge
+[includeIf "gitdir:~/Projects/Multiplatforge/Missions/"]
+    path = .gitconfig-work
