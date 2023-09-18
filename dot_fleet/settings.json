@@ -3,5 +3,6 @@
     "vimEmulationEnabled": true,
     "fus.sendAllowed": false,
     "terminal.caretShape": "Block",
-    "terminal.enableFocusEditorOnEsc": true
+    "terminal.enableFocusEditorOnEsc": true,
+    "git.push.confirm": false
 }
