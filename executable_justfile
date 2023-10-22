@@ -5,7 +5,7 @@ alias up := update
 default:
   @just --choose
 
-update: update-brew update-sdkman update-node update-npm update-pip update-rust update-gems update-tuist update-amplify update-zinit update-spacevim update-tealdeer has-update-xcode
+update: update-brew update-sdkman update-node update-npm bootstrap-npm update-pip update-rust update-gems update-tuist update-amplify update-zinit update-spacevim update-tealdeer has-update-xcode
 
 update-brew:
     brew update
@@ -56,8 +56,6 @@ update-npm:
 
     echo "$(tput bold)nvm install-latest-npm$(tput sgr0)"
     nvm install-latest-npm
-    echo "$(tput bold)npm -g update$(tput sgr0)"
-    npm -g update
 
 update-pip:
     python3 -m pip install --upgrade pip
@@ -121,7 +119,7 @@ clean-brew:
 
 
 bootstrap-npm:
-    npm install -g nx pnpm yarn npm-check-updates aws-cdk @aws-amplify/cli @serverless-stack/cli serverless create-nx-workspace create-nx-plugin create-sst create-next-app create-react-app create-tauri-app
+    npm install -g nx pnpm yarn npm-check-updates vite aws-cdk @aws-amplify/cli @serverless-stack/cli serverless create-nx-workspace create-nx-plugin create-sst create-next-app create-react-app create-tauri-app
 
 bootstrap-pip-brew:
     brew install xonsh ranger awscli speedtest-cli
