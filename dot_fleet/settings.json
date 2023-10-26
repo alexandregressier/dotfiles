@@ -4,5 +4,6 @@
     "fus.sendAllowed": false,
     "terminal.caretShape": "Block",
     "terminal.enableFocusEditorOnEsc": true,
-    "git.push.confirm": false
+    "git.push.confirm": false,
+    "git.revert.confirm": false
 }
