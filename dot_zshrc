@@ -170,10 +170,9 @@ gradle-or-gradlew () {
 }
 
 # Aliases ——————————————————————————————————————————————————————————————————————————————————————————
-alias e="subl"
-alias ez='e ~/.zshrc'
-alias eze='e ~/.zshenv'
-alias ej='e ~/justfile'
+alias vim='nvim'
+alias v='nvim'
+alias e='nvim'
 
 alias ls='exa'
 alias ll='exa --long --header'
