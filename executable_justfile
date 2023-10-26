@@ -5,7 +5,7 @@ alias up := update
 default:
   @just --choose
 
-update: update-brew update-sdkman update-node update-npm bootstrap-npm update-pip update-rust update-gems update-tuist update-amplify update-zinit update-spacevim update-tealdeer has-update-xcode
+update: update-brew update-sdkman update-node update-npm bootstrap-npm update-pip update-rust update-gems update-tuist update-amplify update-zinit update-tealdeer has-update-xcode
 
 update-brew:
     brew update
@@ -83,9 +83,6 @@ update-zinit:
     echo "$(tput bold)zinit update --parallel$(tput sgr0)"
     zinit update --parallel
 
-update-spacevim:
-    git -C ~/.SpaceVim/ pull
-
 update-tealdeer:
     tldr --update
 
@@ -119,7 +116,7 @@ clean-brew:
 
 
 bootstrap-npm:
-    npm install -g nx pnpm yarn npm-check-updates vite aws-cdk @aws-amplify/cli @serverless-stack/cli serverless create-nx-workspace create-nx-plugin create-sst create-next-app create-react-app create-tauri-app
+    npm install -g nx pnpm yarn npm-check-updates create-vite aws-cdk @aws-amplify/cli @serverless-stack/cli serverless create-nx-workspace create-nx-plugin create-sst create-next-app create-react-app create-tauri-app
 
 bootstrap-pip-brew:
     brew install xonsh ranger awscli speedtest-cli
