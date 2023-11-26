@@ -8,5 +8,5 @@
 export ARCHFLAGS="-arch $(uname -m)"
 export MAKEFLAGS="-j$(/usr/sbin/sysctl -n hw.ncpu)"
 
-# Serverless Stack Toolkit (SST)
+# SST
 export SST_TELEMETRY_DISABLED=1

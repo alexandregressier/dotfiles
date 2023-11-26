@@ -50,6 +50,9 @@ prepend_path "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin" # Symlinks w/o g pr
 prepend_path "$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin"
 prepend_path "$HOMEBREW_PREFIX/opt/grep/libexec/gnubin"
 
+# Coursier
+append_path "$HOME/Library/Application Support/Coursier/bin"
+
 # Android
 prepend_path "$ANDROID_HOME/tools"
 prepend_path "$ANDROID_HOME/tools/bin"
