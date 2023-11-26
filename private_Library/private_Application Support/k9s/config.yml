@@ -21,7 +21,7 @@ k9s:
   clusters:
     docker-desktop:
       namespace:
-        active: all
+        active: default
         lockFavorites: false
         favorites:
         - all
