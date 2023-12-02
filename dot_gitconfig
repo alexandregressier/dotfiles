@@ -21,7 +21,7 @@
     program = gpg
 [delta]
     navigate = true
-    light = true
+    light = false
 [includeIf "gitdir:~/Multiplatforge/"]
     path = .gitconfig-multiplatforge
 [includeIf "gitdir:~/Projects/Multiplatforge/Missions/"]
