@@ -136,6 +136,14 @@ if.app-id = 'com.apple.iCal'
 run = 'layout floating'
 
 [[on-window-detected]]
+if.app-id = 'com.raycast.macos'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.adobe.acc.AdobeCreativeCloud'
+run = 'layout floating'
+
+[[on-window-detected]]
 if.app-id = 'net.mullvad.vpn'
 run = 'layout floating'
 
