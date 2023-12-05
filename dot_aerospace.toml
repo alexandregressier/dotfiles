@@ -95,10 +95,6 @@ if.app-id = 'com.apple.reminders'
 run = 'move-node-to-workspace 7'
 
 [[on-window-detected]]
-if.app-id = 'com.apple.Notes'
-run = 'move-node-to-workspace 7'
-
-[[on-window-detected]]
 if.app-id = 'com.apple.iCal'
 run = 'move-node-to-workspace 7'
 
