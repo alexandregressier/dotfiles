@@ -59,6 +59,14 @@ if.app-id = 'company.thebrowser.Browser'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij'
 run = 'move-node-to-workspace 4'
 
@@ -107,10 +115,6 @@ if.app-id = 'com.apple.mail'
 run = 'move-node-to-workspace 8'
 
 [[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 8'
-
-[[on-window-detected]]
 if.app-id = 'com.jetbrains.space.desktop'
 run = 'move-node-to-workspace 8'
 
@@ -151,6 +155,9 @@ run = 'layout floating'
 if.app-id = 'com.bitwarden.desktop'
 run = 'layout floating'
 
+[[on-window-detected]]
+if.app-id = 'com.electron.vysor'
+run = 'layout floating'
 
 # 'main' binding mode declaration. See: https://github.com/nikitabobko/AeroSpace/blob/main/docs/guide.md#bindings-modes
 # 'main' binding mode must be always presented
