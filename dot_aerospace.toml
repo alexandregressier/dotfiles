@@ -67,10 +67,6 @@ if.app-id = 'us.zoom.xos'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-if.app-id = 'com.jetbrains.intellij'
-run = 'move-node-to-workspace 4'
-
-[[on-window-detected]]
 if.app-id = 'Fleet.app'
 run = 'move-node-to-workspace 4'
 
@@ -89,14 +85,6 @@ run = 'move-node-to-workspace 6'
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.AppCode'
 run = 'move-node-to-workspace 6'
-
-[[on-window-detected]]
-if.app-id = 'com.apple.reminders'
-run = 'move-node-to-workspace 7'
-
-[[on-window-detected]]
-if.app-id = 'com.apple.iCal'
-run = 'move-node-to-workspace 7'
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
@@ -133,6 +121,14 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.iCal'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.FaceTime'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.ScreenSharing'
 run = 'layout floating'
 
 [[on-window-detected]]
