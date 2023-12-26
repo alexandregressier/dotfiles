@@ -5,11 +5,14 @@ alias up := update
 default:
   @just --choose
 
-update: update-brew update-sdkman update-node update-npm bootstrap-npm update-pip update-rust update-gems update-tuist update-amplify update-zinit update-tealdeer has-update-xcode
+update: update-brew update-aerospace update-sdkman update-node update-npm bootstrap-npm update-pip update-rust update-gems update-tuist update-amplify update-zinit update-tealdeer has-update-xcode
 
 update-brew:
     brew update
     brew upgrade
+
+update-aerospace:
+    brew install --no-quarantine --cask nikitabobko/tap/aerospace
 
 update-sdkman:
     #!/usr/bin/env zsh
