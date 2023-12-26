@@ -119,7 +119,7 @@ clean-brew:
 
 
 bootstrap-npm:
-    npm install -g nx pnpm yarn npm-check-updates aws-cdk @aws-amplify/cli serverless
+    npm install -g nx pnpm yarn npm-check-updates aws-cdk @aws-amplify/cli serverless aws-organization-formation
 
 bootstrap-pip-brew:
     brew install xonsh ranger awscli speedtest-cli
