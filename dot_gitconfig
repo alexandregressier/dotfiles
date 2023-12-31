@@ -26,3 +26,5 @@
     path = .gitconfig-multiplatforge
 [includeIf "gitdir:~/Projects/Multiplatforge/Missions/"]
     path = .gitconfig-work
+[includeIf "gitdir:~/Projects/projectg/"]
+    path = .gitconfig-projectg
