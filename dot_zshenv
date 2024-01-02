@@ -3,6 +3,9 @@
 # Always sourced, should run as fast as possible
 
 # Variables ————————————————————————————————————————————————————————————————————————————————————————
+# AWS
+export AWS_PROFILE='default' # From chatwithcloud: "Found following identities in ~/.aws directory. Pick AWS identity. You can also use AWS_PROFILE environment variable to select it immediately."
+
 # Java
 export JAVA_VERSION='17' # Filter from `java_home --help`
 export JAVA_ARCH="$(arch)" # Filter from `java_home --help`
