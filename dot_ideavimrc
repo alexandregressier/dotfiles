@@ -44,7 +44,6 @@ nnoremap d d
 nnoremap f i
 nnoremap F I
 nnoremap g g
-nnoremap h ^
 nnoremap j h
 nnoremap k j
 nnoremap l l
@@ -58,15 +57,48 @@ nnoremap n /
 nnoremap N ?
 nnoremap m m
 
+
+let g:last_key = ''
+
+function! CheckLastKey()
+  if strtrans(v:char) != ';' && g:last_key == ';'
+    let g:last_key = ''
+  endif
+  if strtrans(v:char) != 'h' && g:last_key == 'h'
+    let g:last_key = ''
+  endif
+  if strtrans(v:char) == ';' || strtrans(v:char) == 'h'
+    let g:last_key = strtrans(v:char)
+  endif
+endfunction
+
+augroup CheckLastKey
+  au!
+  autocmd CursorMoved,CursorMovedI * call CheckLastKey()
+augroup END
+
 function! SmartEndOrNextBlock()
-  if col('.') == col('$')
-    normal }
+  if g:last_key == ';' && col('.') == col('$')
+    normal! }
   else
-    normal $
+    normal! $
+    let g:last_key = ';'
+  endif
+endfunction
+
+function! SmartStartOrPreviousBlock()
+  if g:last_key == 'h' && col('.') == col('^')
+    normal! {
+  else
+    normal! ^
+    let g:last_key = 'h'
   endif
 endfunction
 
 nnoremap ; :call SmartEndOrNextBlock()<CR>
+nnoremap h :call SmartStartOrPreviousBlock()<CR>
+
+
 
 map <Leader><Leader> <Action>(GotoAction)
 
