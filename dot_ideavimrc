@@ -22,9 +22,52 @@ set ignorecase
 set smartcase
 
 set ideastatusicon="gray"
-set ideajoin
+
 
 """ Mappings ------------------------------------
+nnoremap q q
+nnoremap w w
+nnoremap e c
+nnoremap r r
+nnoremap t v
+nnoremap T V
+nnoremap y u
+nnoremap Y <C-r>
+nnoremap u b
+nnoremap i k
+nnoremap o e
+nnoremap p t
+nnoremap a a
+nnoremap s o
+nnoremap S O
+nnoremap d d
+nnoremap f i
+nnoremap F I
+nnoremap g g
+nnoremap h ^
+nnoremap j h
+nnoremap k j
+nnoremap l l
+nnoremap z z
+nnoremap x x
+nnoremap c y
+nnoremap C Y
+nnoremap v p
+nnoremap b s
+nnoremap n /
+nnoremap N ?
+nnoremap m m
+
+function! SmartEndOrNextBlock()
+  if col('.') == col('$')
+    normal }
+  else
+    normal $
+  endif
+endfunction
+
+nnoremap ; :call SmartEndOrNextBlock()<CR>
+
 map <Leader><Leader> <Action>(GotoAction)
 
 " Quit
@@ -114,7 +157,7 @@ nmap <M-i> <Action>(InsertLiveTemplate)
 imap <M-i> <Action>(InsertLiveTemplate)
 
 " Edit
-nnoremap C cc
+"nnoremap C cc
 nnoremap cc C
 nnoremap cC c^
 
@@ -125,11 +168,11 @@ xnoremap < <gv
 xnoremap > >gv
 
 " Undo
-nnoremap U <C-R>
+"nnoremap U <C-R>
 
 " Copy/Cut/Paste
-nnoremap yy y$
-nnoremap yY y^
+"nnoremap yy y$
+"nnoremap yY y^
 
 nnoremap D dd
 nnoremap dd d$
@@ -139,8 +182,8 @@ map <A-p> <Action>(PasteMultiple)
 imap <A-p> <Action>(PasteMultiple)
 
 " Find & Replace
-xmap / y/<C-r>0
-xmap ? y/<C-r>0
+"xmap / y/<C-r>0
+"xmap ? y/<C-r>0
 sethandler <M-l> a:vim
 nnoremap <M-l> :nohls<cr>
 sethandler <M-r> a:ide
