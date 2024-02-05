@@ -23,12 +23,24 @@ set smartcase
 
 set ideastatusicon="gray"
 
+function! SmartHome()
+    " Check if the cursor is at the beginning of the line
+    if col('.') == 1
+        " If the cursor is at the beginning of the line, execute {
+        normal! {
+    else
+        " If the cursor is not at the beginning of the line, go to the beginning of the line
+        normal! ^
+    endif
+endfunction
+
 
 """ Mappings ------------------------------------
-nnoremap q q
-nnoremap w w
-nnoremap e c
-nnoremap r r
+nnoremap q <Action>(ReformatCode)
+nnoremap w o
+nnoremap W O
+nnoremap e db
+
 nnoremap t v
 nnoremap T V
 nnoremap y u
@@ -37,67 +49,35 @@ nnoremap u b
 noremap i k
 nnoremap o e
 nnoremap p t
-nnoremap a a
-nnoremap s o
-nnoremap S O
-nnoremap d d
+
+nnoremap a v
+nnoremap A V
+nnoremap s c
+nnoremap S C
+nnoremap D x
 nnoremap f i
 nnoremap F I
-nnoremap g g
+nnoremap g .
+nnoremap h :call SmartHome()<cr>^
+nnoremap H I
 noremap j h
 noremap k j
-noremap l l
-nnoremap z z
-nnoremap x x
-nnoremap c y
-nnoremap C Y
+noremap ; $
+nnoremap : A
+
+nnoremap z u
+nnoremap Z <C-r>
+nnoremap x c$
+xnoremap x d
+noremap c y
+noremap C Y
 nnoremap v p
 nnoremap b s
-nnoremap n /
-nnoremap N ?
 nnoremap m m
-nnoremap / %
-
-
-" SmartStartOrPreviousBlock function
-function! SmartStartOrPreviousBlock()
-  if g:last_key == 'h' || col('.') == col('^') + 1
-    " Move to the previous block if 'h' was the previous key pressed 
-    " or if cursor is at start of the line (ignoring whitespace)
-    normal! {
-    let g:last_key = 'h'
-  else
-    " If neither condition is true, move to start of line (ignoring whitespace)
-    normal! ^
-    let g:last_key = ''
-  endif
-endfunction
-
-" SmartEndOrNextBlock function
-function! SmartEndOrNextBlock()
-  if g:last_key == ';' || col('.') >= col('$') - 1
-    " Move to the next block if ';' was the previous key pressed 
-    " or if cursor is at or almost at end of line
-    normal! }
-    let g:last_key = ';'
-  else
-    " If neither condition is true, move to end of line
-    normal! $
-    let g:last_key = ''
-  endif
-endfunction
-
-" Mapping 'h' and ';' to their respective functions
-nnoremap h :call SmartStartOrPreviousBlock()<CR>
-nnoremap ; :call SmartEndOrNextBlock()<CR>
-
-" Initializing last_key
-let g:last_key = ''
-
-
-
-
-
+nnoremap , <C-w><C-w>
+nnoremap . %
+xnoremap / y/<C-r>0
+xnoremap ? y/<C-r>0
 
 
 map <Leader><Leader> <Action>(GotoAction)
@@ -106,226 +86,3 @@ map <Leader><Leader> <Action>(GotoAction)
 nmap <Leader>qq <Action>(Exit)
 nmap <Leader>qr <Action>(InvalidateCaches)
 
-" IdeaVIM
-map <Leader>ze :e ~/.ideavimrc<cr>
-map <Leader>zv <Action>(VimFindActionIdAction)
-
-" NERDTree
-map <Leader><Esc> :NERDTree<cr>
-map <Leader><S-Esc> :NERDTreeFind<cr>
-
-" Projects
-map <Leader>pp <Action>(ManageRecentProjects)
-map <Leader>po <Action>(OpenFile)
-map <Leader>pn <Action>(NewProject)
-map <Leader>px <Action>(CloseProject)
-map <Leader>pl <Action>(OpenProjectWindows)
-map <Leader>pj <Action>(NextProjectWindow)
-map <Leader>pk <Action>(PreviousProjectWindow)
-
-" Files
-sethandler <M-j> a:vim
-map <M-j> <Action>(RecentFiles)
-imap <M-j> <Action>(RecentFiles)
-map <Leader>ff <Action>(GotoFile)
-map <Leader>fs <Action>(GotoSymbol)
-map <Leader>fc <Action>(GotoClass)
-
-" Buffers
-map <Leader><Tab> <C-S-6>
-map <Leader>s <Action>(Switcher)
-map <Leader>x <Action>(CloseContent)
-map <Leader><S-x> <Action>(ReopenClosedTab)
-sethandler <M-S-j> a:vim
-map <M-S-j> <Action>(PreviousTab)
-sethandler <M-S-k> a:vim
-map <M-S-k> <Action>(NextTab)
-
-" Window
-map <Leader>ww <C-w><C-w>
-map <Leader>wh <C-w>h
-map <Leader>wj <C-w>j
-map <Leader>wk <C-w>k
-map <Leader>wl <C-w>l
-map <Leader>w/ <C-w>v<C-w>h:q<cr>
-map <Leader>w- <C-w>s<C-w>k:q<cr>
-map <Leader>w? <C-w>v<C-w>h
-map <Leader>w_ <C-w>s<C-w>k
-map <Leader>wx <Action>(CloseAllEditors)
-
-" Words
-onoremap w iw
-xnoremap w iw
-
-onoremap W iW
-xnoremap W iW
-
-onoremap " i"
-xnoremap " i"
-
-onoremap ) i)
-xnoremap ) i)
-onoremap ( a)
-xnoremap ( a)
-
-onoremap ] i]
-xnoremap ] i]
-onoremap [ a]
-xnoremap [ a]
-
-sethandler <A-S-j> n:vim
-nmap <A-S-j> <Action>(MoveStatementDown)
-xmap <A-S-j> <Action>(MoveStatementDown)
-sethandler <A-S-k> n:vim
-nmap <A-S-k> <Action>(MoveStatementUp)
-xmap <A-S-k> <Action>(MoveStatementUp)
-
-sethandler <C-i> n:vim
-nnoremap <C-i> :action JumpToLastChange<cr>
-sethandler <C-o> n:vim
-
-" Insert
-nmap <M-i> <Action>(InsertLiveTemplate)
-imap <M-i> <Action>(InsertLiveTemplate)
-
-" Edit
-"nnoremap C cc
-nnoremap cc C
-nnoremap cC c^
-
-sethandler <C-a> n:vim
-sethandler <C-x> n:vim
-
-xnoremap < <gv
-xnoremap > >gv
-
-" Undo
-"nnoremap U <C-R>
-
-" Copy/Cut/Paste
-"nnoremap yy y$
-"nnoremap yY y^
-
-nnoremap D dd
-nnoremap dd d$
-nnoremap dD d^
-
-map <A-p> <Action>(PasteMultiple)
-imap <A-p> <Action>(PasteMultiple)
-
-" Find & Replace
-"xmap / y/<C-r>0
-"xmap ? y/<C-r>0
-sethandler <M-l> a:vim
-nnoremap <M-l> :nohls<cr>
-sethandler <M-r> a:ide
-map <Leader>/ <Action>(FindInPath)
-map <Leader><M-r> <Action>(ReplaceInPath)
-
-" Formatting
-nmap == <Action>(ReformatCode)
-vmap <Leader>== <Action>(com.andrewbrookins.idea.wrap.WrapAction)
-
-" Selection
-nmap vai vaI
-
-" Refactoring
-map <Leader>cw <Action>(RenameElement)
-nmap <Leader>8 <Plug>AllWholeOccurrences
-xmap <Leader>8 <Plug>AllWholeOccurrences
-
-map <Leader>rr <Action>(Refactorings.QuickListPopupAction)
-map <Leader>rm <Action>(Move)
-map <Leader>rw <Action>(SurroundWith)
-map <Leader>rd <Action>(Unwrap)
-
-map <Leader>rf <Action>(ChangeSignature)
-map <Leader>rv <Action>(IntroduceVariable)
-map <Leader>rn <Action>(Inline)
-map <Leader>rV <Action>(IntroduceProperty)
-map <Leader>rp <Action>(IntroduceParameter)
-
-map <Leader>rf <Action>(ExtractFunction)
-map <Leader>ri <Action>(ExtractInterface)
-
-"map <Leader>rj <Action>(MemberPushDown)
-"map <Leader>rk <Action>(MembersPullUp)
-
-" Errors
-map <Leader>el <Action>(CodeInspection.OnEditor)
-map <Leader>ej <Action>(GotoNextError)
-map <Leader>ek <Action>(GotoPreviousError)
-map <Leader>ed <Action>(ShowErrorDescription)
-map <Leader>ei <Action>(RunInspection)
-
-" Git
-map <Leader>gg <Action>(Vcs.Show.Local.Changes)
-map <Leader>gi <Action>(Git.Init)
-map <Leader>gb <Action>(Git.Branches)
-map <Leader>gl <Action>(Vcs.Show.Log)
-map <Leader>gh <Action>(Vcs.ShowTabbedFileHistory)
-map <Leader>gH <Action>(LocalHistory.ShowHistory)
-map <Leader>gp <Action>(Vcs.Push)
-map <Leader>gP <Action>(Vcs.Pull)
-map <Leader>gf <Action>(Git.Fetch)
-
-" Applications
-map <Leader>` <Action>(com.sonnk.iterm.OpenCmd)
-
-" Actions
-"map <M-C-bs> <Action>(RunConfigurationAsAction_Run_orb-apps [clean]_default_target)
-"imap <M-C-bs> <Action>(RunConfigurationAsAction_Run_orb-apps [clean]_default_target)
-"map <M-C-cr> <Action>(RunConfigurationAsAction_Run_orb-apps [assembleDebug]_default_target)
-"imap <M-C-cr> <Action>(RunConfigurationAsAction_Run_orb-apps [assembleDebug]_default_target)
-"map <M-C-A-cr> <Action>(RunConfigurationAsAction_Run_orb-android-app_device_and_snapshot_combo_box_target[])
-"imap <M-C-A-cr> <Action>(RunConfigurationAsAction_Run_orb-android-app_device_and_snapshot_combo_box_target[])
-map <M-C-d> <Action>(Stop)
-imap <M-C-d> <Action>(Stop)
-
-" Gradle
-map <Leader>bb <Action>(Gradle.ExecuteTask)
-"map <Leader>br <Action>(ExternalSystem.ProjectRefreshAction)
-map <Leader>br <Action>(Android.SyncProject)
-
-" AceJump
-sethandler <M-e> n:vim
-map <M-e> <Action>(AceAction)
-imap <M-e> <Action>(AceAction)
-"map <M-S-e> <Action>(AceTargetAction)
-map <Leader><M-e> <Action>(FileStructurePopup)
-
-" Multiple Cursors
-sethandler <M-A-j> a:vim
-map <M-A-j> <Action>(EditorCloneCaretBelow)
-imap <M-A-j> <Action>(EditorCloneCaretBelow)
-sethandler <M-A-k> a:vim
-map <M-A-k> <Action>(EditorCloneCaretAbove)
-imap <M-A-k> <Action>(EditorCloneCaretAbove)
-
-sethandler <C-n> a:vim
-nmap <C-n> <Plug>NextWholeOccurrence
-xmap <C-n> <Plug>NextWholeOccurrence
-nmap g<C-n> <Plug>NextOccurrence
-xmap g<C-n> <Plug>NextOccurrence
-
-sethandler <C-S-n> a:vim
-nmap <C-S-n> <Plug>PrevOccurrence
-xmap <C-S-n> <Plug>PrevOccurrence
-
-sethandler <C-A-n> a:vim
-nmap <C-A-n> <Plug>SkipOccurrence
-xmap <C-A-n> <Plug>SkipOccurrence
-
-nmap <C-p> <Plug>RemoveOccurrence
-xmap <C-p> <Plug>RemoveOccurrence
-
-sethandler <C-g> v:vim
-xmap <C-g> <Action>($SearchWeb)
-
-" DataSpell
-"sethandler <M-o> a:vim
-"nnoremap <M-o> :action NotebookInsertCellBelowAction<CR>i#<Space>
-"sethandler <M-S-o> a:vim
-"nnoremap <M-S-o> :action NotebookInsertCellAboveAction<CR>i
-"sethandler <M-d> a:vim
-"nnoremap <M-d> :action NotebookDeleteCellAction<CR>
