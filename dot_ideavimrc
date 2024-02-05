@@ -1,11 +1,15 @@
 let mapleader = " "
 
 source ~/.vimplug
+set sneak
+set quickscope
 
 """ Plugin Settings -----------------------------
 let g:argtextobj_pairs="(:),{:},[:],<:>"
 
 let g:highlightedyank_highlight_duration = "200"
+
+let g:qs_highlight_on_keys = ['p', 'P', 'y', 'Y']
 
 """ Settings -----------------------------
 set showmode
@@ -23,32 +27,49 @@ set smartcase
 
 set ideastatusicon="gray"
 
-function! SmartHome()
-    " Check if the cursor is at the beginning of the line
-    if col('.') == 1
-        " If the cursor is at the beginning of the line, execute {
+set scroll=20
+
+let g:last_command = ''
+
+function! GoToBeginningOfLineOrBlock()
+    if col('.') <= col('^')
         normal! {
+        let g:last_command = '{'
     else
-        " If the cursor is not at the beginning of the line, go to the beginning of the line
         normal! ^
+        let g:last_command = '^'
     endif
 endfunction
 
+function! GoToEndOfLineOrBlock()
+    if col('.') >= col('$') - 1
+        normal! }
+        let g:last_command = '}'
+    else
+        normal! $
+        let g:last_command = '$'
+    endif
+endfunction
 
 """ Mappings ------------------------------------
-nnoremap q <Action>(ReformatCode)
+"nnoremap q <Action>(ReformatCode)
 nnoremap w o
 nnoremap W O
-nnoremap e db
-
-nnoremap t v
-nnoremap T V
+nnoremap e x
+xnoremap e x
+nnoremap t g
+nnoremap T g
 nnoremap y u
-nnoremap Y <C-r>
 nnoremap u b
-noremap i k
-nnoremap o e
-nnoremap p t
+nnoremap U [b
+nnoremap i k
+xnoremap i k
+nnoremap I <C-u>
+nnoremap o w
+xnoremap o w
+nnoremap O [w
+xnoremap O [w
+nnoremap p f
 
 nnoremap a v
 nnoremap A V
@@ -56,26 +77,50 @@ nnoremap s c
 nnoremap S C
 nnoremap D x
 nnoremap f i
-nnoremap F I
+nnoremap F :
 nnoremap g .
-nnoremap h :call SmartHome()<cr>^
+nnoremap h :call GoToBeginningOfLineOrBlock()<CR>
 nnoremap H I
-noremap j h
-noremap k j
-noremap ; $
+nnoremap j h
+xnoremap j h
+nnoremap k j
+xnoremap k j
+sethandler <C-d> n:vim
+nnoremap K <C-d>
+noremap ; :call GoToEndOfLineOrBlock()<CR>
 nnoremap : A
 
 nnoremap z u
 nnoremap Z <C-r>
-nnoremap x c$
+nnoremap x d
 xnoremap x d
-noremap c y
-noremap C Y
+nnoremap X dd
+nnoremap c y
+xnoremap c y
+nnoremap C Y
 nnoremap v p
+nnoremap V P
 nnoremap b s
-nnoremap m m
+
+nnoremap <BS> x
+xnoremap <BS> x
+
+function! GoToPreviousBracket()
+    let search = @/
+    execute "normal! ?("
+    let @/ = search
+endfunction
+
+function! GoToNextBracket()
+    let search = @/
+    execute "normal! /[)\\]}>]"
+    let @/ = search
+endfunction
+
+nnoremap m :call GoToPreviousBracket()<CR>
 nnoremap , <C-w><C-w>
-nnoremap . %
+nnoremap . :call GoToNextBracket()<CR>
+
 xnoremap / y/<C-r>0
 xnoremap ? y/<C-r>0
 
@@ -86,3 +131,18 @@ map <Leader><Leader> <Action>(GotoAction)
 nmap <Leader>qq <Action>(Exit)
 nmap <Leader>qr <Action>(InvalidateCaches)
 
+onoremap u iw
+xnoremap u iw
+
+onoremap U [w
+xnoremap U [w
+
+onoremap " i"
+xnoremap " i"
+
+onoremap ) i)
+xnoremap ) i)
+onoremap ( a)
+xnoremap ( a)
+
+map <Leader>cu <Action>(RenameElement)
