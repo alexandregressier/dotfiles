@@ -56,47 +56,47 @@ nnoremap b s
 nnoremap n /
 nnoremap N ?
 nnoremap m m
+nnoremap / %
 
 
+" SmartStartOrPreviousBlock function
+function! SmartStartOrPreviousBlock()
+  if g:last_key == 'h' || col('.') == col('^') + 1
+    " Move to the previous block if 'h' was the previous key pressed 
+    " or if cursor is at start of the line (ignoring whitespace)
+    normal! {
+    let g:last_key = 'h'
+  else
+    " If neither condition is true, move to start of line (ignoring whitespace)
+    normal! ^
+    let g:last_key = ''
+  endif
+endfunction
+
+" SmartEndOrNextBlock function
+function! SmartEndOrNextBlock()
+  if g:last_key == ';' || col('.') >= col('$') - 1
+    " Move to the next block if ';' was the previous key pressed 
+    " or if cursor is at or almost at end of line
+    normal! }
+    let g:last_key = ';'
+  else
+    " If neither condition is true, move to end of line
+    normal! $
+    let g:last_key = ''
+  endif
+endfunction
+
+" Mapping 'h' and ';' to their respective functions
+nnoremap h :call SmartStartOrPreviousBlock()<CR>
+nnoremap ; :call SmartEndOrNextBlock()<CR>
+
+" Initializing last_key
 let g:last_key = ''
 
-function! CheckLastKey()
-  if strtrans(v:char) != ';' && g:last_key == ';'
-    let g:last_key = ''
-  endif
-  if strtrans(v:char) != 'h' && g:last_key == 'h'
-    let g:last_key = ''
-  endif
-  if strtrans(v:char) == ';' || strtrans(v:char) == 'h'
-    let g:last_key = strtrans(v:char)
-  endif
-endfunction
 
-augroup CheckLastKey
-  au!
-  autocmd CursorMoved,CursorMovedI * call CheckLastKey()
-augroup END
 
-function! SmartEndOrNextBlock()
-  if g:last_key == ';' && col('.') == col('$')
-    normal! }
-  else
-    normal! $
-    let g:last_key = ';'
-  endif
-endfunction
 
-function! SmartStartOrPreviousBlock()
-  if g:last_key == 'h' && col('.') == col('^')
-    normal! {
-  else
-    normal! ^
-    let g:last_key = 'h'
-  endif
-endfunction
-
-nnoremap ; :call SmartEndOrNextBlock()<CR>
-nnoremap h :call SmartStartOrPreviousBlock()<CR>
 
 
 
