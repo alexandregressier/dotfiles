@@ -15,7 +15,8 @@ let g:qs_highlight_on_keys = ['p', 'P', 'y', 'Y']
 set showmode
 set relativenumber
 set number
-set scrolloff=8
+set scroll=20
+set scrolloff=10
 set clipboard+=unnamed
 set ttimeout
 
@@ -27,7 +28,6 @@ set smartcase
 
 set ideastatusicon="gray"
 
-set scroll=20
 
 let g:last_command = ''
 
@@ -80,6 +80,7 @@ nnoremap f i
 nnoremap F :
 nnoremap g .
 nnoremap h :call GoToBeginningOfLineOrBlock()<CR>
+xnoremap h :call GoToBeginningOfLineOrBlock()<CR>
 nnoremap H I
 nnoremap j h
 xnoremap j h
@@ -87,7 +88,8 @@ nnoremap k j
 xnoremap k j
 sethandler <C-d> n:vim
 nnoremap K <C-d>
-noremap ; :call GoToEndOfLineOrBlock()<CR>
+nnoremap ; :call GoToEndOfLineOrBlock()<CR>
+xnoremap ; :call GoToEndOfLineOrBlock()<CR>
 nnoremap : A
 
 nnoremap z u
@@ -102,8 +104,11 @@ nnoremap v p
 nnoremap V P
 nnoremap b s
 
-nnoremap <BS> x
-xnoremap <BS> x
+nnoremap <BS> "_x
+xnoremap <BS> "_x
+sethandler <S-BS> a:vim
+nnoremap <S-BS> "_X
+xnoremap <S-BS> "_X
 
 function! GoToPreviousBracket()
     let search = @/
@@ -111,7 +116,7 @@ function! GoToPreviousBracket()
     let @/ = search
 endfunction
 
-function! GoToNextBracket()
+function! GoToNetBracket()
     let search = @/
     execute "normal! /[)\\]}>]"
     let @/ = search
