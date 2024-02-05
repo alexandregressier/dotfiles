@@ -34,7 +34,7 @@ nnoremap T V
 nnoremap y u
 nnoremap Y <C-r>
 nnoremap u b
-nnoremap i k
+noremap i k
 nnoremap o e
 nnoremap p t
 nnoremap a a
@@ -44,9 +44,9 @@ nnoremap d d
 nnoremap f i
 nnoremap F I
 nnoremap g g
-nnoremap j h
-nnoremap k j
-nnoremap l l
+noremap j h
+noremap k j
+noremap l l
 nnoremap z z
 nnoremap x x
 nnoremap c y
